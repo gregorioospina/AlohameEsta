@@ -48,7 +48,7 @@ public class Hostal extends HotelHostal {
 			@JsonProperty(value = "recepcion247") Character recepcion247,
 			@JsonProperty(value = "horaApertura") Date horaApertura,
 			@JsonProperty(value = "horaCierre") Date horaCierre) {
-		super(idOperador, cupoTotal, correo, nombre, restaurante, piscina, parqueadero, wifi, tvCable, recepcion247);
+		super(idOperador, cupoTotal, correo, nombre, restaurante, piscina, parqueadero, wifi, tvCable);
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
 	}
