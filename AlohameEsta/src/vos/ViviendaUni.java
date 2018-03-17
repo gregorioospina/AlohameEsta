@@ -1,24 +1,24 @@
 package vos;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.*;
 
 public class ViviendaUni extends Operador {
 
 	@JsonProperty(value = "id")
 	private Long id;
-	
+
 	@JsonProperty(value = "salasDeEstudioCosto")
 	private Integer salasDeEstudioCosto;
-	
+
 	@JsonProperty(value = "restauranteCosto")
 	private Integer restauranteCosto;
-	
+
 	@JsonProperty(value = "gimnasioCosto")
 	private Integer gimnasioCosto;
-	
+
 	@JsonProperty(value = "ubicacion")
 	private String ubicacion;
-	
+
 	@JsonProperty(value = "capacidad")
 	private Short capacidad;
 
@@ -34,11 +34,14 @@ public class ViviendaUni extends Operador {
 	 * @param ubicacion
 	 * @param capacidad
 	 */
-	public ViviendaUni(@JsonProperty(value = "idOperador")Long idOperador, @JsonProperty(value = "cupoTotal")Integer cupoTotal,@JsonProperty(value = "correo") String correo, @JsonProperty(value = "nombre")String nombre, @JsonProperty(value = "id")Long id,
-			@JsonProperty(value = "salasDeEstudioCosto") Integer salasDeEstudioCosto, @JsonProperty(value = "restauranteCosto")Integer restauranteCosto, @JsonProperty(value = "gimansioCosto")Integer gimnasioCosto,@JsonProperty(value = "ubicacion") String ubicacion,
-			Short capacidad) {
+	public ViviendaUni(@JsonProperty(value = "idOperador") Long idOperador,
+			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
+			@JsonProperty(value = "nombre") String nombre,
+			@JsonProperty(value = "salasDeEstudioCosto") Integer salasDeEstudioCosto,
+			@JsonProperty(value = "restauranteCosto") Integer restauranteCosto,
+			@JsonProperty(value = "gimansioCosto") Integer gimnasioCosto,
+			@JsonProperty(value = "ubicacion") String ubicacion, Short capacidad) {
 		super(idOperador, cupoTotal, correo, nombre);
-		this.id = id;
 		this.salasDeEstudioCosto = salasDeEstudioCosto;
 		this.restauranteCosto = restauranteCosto;
 		this.gimnasioCosto = gimnasioCosto;
@@ -54,7 +57,8 @@ public class ViviendaUni extends Operador {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -68,7 +72,8 @@ public class ViviendaUni extends Operador {
 	}
 
 	/**
-	 * @param salasDeEstudioCosto the salasDeEstudioCosto to set
+	 * @param salasDeEstudioCosto
+	 *            the salasDeEstudioCosto to set
 	 */
 	public void setSalasDeEstudioCosto(Integer salasDeEstudioCosto) {
 		this.salasDeEstudioCosto = salasDeEstudioCosto;
@@ -82,7 +87,8 @@ public class ViviendaUni extends Operador {
 	}
 
 	/**
-	 * @param restauranteCosto the restauranteCosto to set
+	 * @param restauranteCosto
+	 *            the restauranteCosto to set
 	 */
 	public void setRestauranteCosto(Integer restauranteCosto) {
 		this.restauranteCosto = restauranteCosto;
@@ -96,7 +102,8 @@ public class ViviendaUni extends Operador {
 	}
 
 	/**
-	 * @param gimnasioCosto the gimnasioCosto to set
+	 * @param gimnasioCosto
+	 *            the gimnasioCosto to set
 	 */
 	public void setGimnasioCosto(Integer gimnasioCosto) {
 		this.gimnasioCosto = gimnasioCosto;
@@ -110,7 +117,8 @@ public class ViviendaUni extends Operador {
 	}
 
 	/**
-	 * @param ubicacion the ubicacion to set
+	 * @param ubicacion
+	 *            the ubicacion to set
 	 */
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
@@ -124,12 +132,11 @@ public class ViviendaUni extends Operador {
 	}
 
 	/**
-	 * @param capacidad the capacidad to set
+	 * @param capacidad
+	 *            the capacidad to set
 	 */
 	public void setCapacidad(Short capacidad) {
 		this.capacidad = capacidad;
 	}
-	
-	
-	
+
 }

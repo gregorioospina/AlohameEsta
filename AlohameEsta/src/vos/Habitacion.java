@@ -2,60 +2,59 @@ package vos;
 
 import org.codehaus.jackson.annotate.*;
 
-public class Habitacion 
-{
-////////////////////////////////////////////
-////////////////ATRIBUTOS///////////////////
-////////////////////////////////////////////
+public class Habitacion {
+	////////////////////////////////////////////
+	//////////////// ATRIBUTOS///////////////////
+	////////////////////////////////////////////
 
 	/**
-	 * tipo de cuarto
-	 * ej. suite, double, single.
+	 * tipo de cuarto ej. suite, double, single.
 	 */
 	@JsonProperty(value = "tipo")
 	private String tipo;
-	
+
 	/**
 	 * Cupo de personas que caben en la habitacion
 	 */
 	@JsonProperty(value = "cupo")
 	private Integer cupo;
-	
+
 	/**
-	 * Precio de habitacion por unidad minima de tiempo
-	 * especificada por reglas de negocio y tipo operador.
+	 * Precio de habitacion por unidad minima de tiempo especificada por reglas
+	 * de negocio y tipo operador.
 	 */
 	@JsonProperty(value = "precio")
 	private Double precio;
-	
+
 	/**
 	 * ubicacion de la habitacion.
 	 */
 	@JsonProperty(value = "ubicacion")
 	private String ubicacion;
-	
+
 	/**
 	 * Hay o no menaje en la habitacion
 	 */
 	@JsonProperty(value = "menaje")
-	private Boolean menaje;
+	private Character menaje;
 
-	
-////////////////////////////////////////////
-////////////////CONSTRUCTOR/////////////////
-////////////////////////////////////////////
+	////////////////////////////////////////////
+	//////////////// CONSTRUCTOR/////////////////
+	////////////////////////////////////////////
 
 	/**
-	 * Metodo constructor para la clase habitacion
-	 * <b> post: </b> Crea la habitacion con los valores por parametros.
+	 * Metodo constructor para la clase habitacion <b> post: </b> Crea la
+	 * habitacion con los valores por parametros.
+	 * 
 	 * @param tipo
 	 * @param cupo
 	 * @param precio
 	 * @param ubicacion
 	 * @param menaje
 	 */
-	public Habitacion(@JsonProperty(value = "tipo") String tipo, @JsonProperty(value = "cupo") Integer cupo, @JsonProperty(value = "precio") Double precio, @JsonProperty(value = "ubicacion") String ubicacion, @JsonProperty(value = "menaje") Boolean menaje) 
-	{
+	public Habitacion(@JsonProperty(value = "tipo") String tipo, @JsonProperty(value = "cupo") Integer cupo,
+			@JsonProperty(value = "precio") Double precio, @JsonProperty(value = "ubicacion") String ubicacion,
+			@JsonProperty(value = "menaje") Character menaje) {
 		this.tipo = tipo;
 		this.cupo = cupo;
 		this.precio = precio;
@@ -63,10 +62,9 @@ public class Habitacion
 		this.menaje = menaje;
 	}
 
-	
-////////////////////////////////////////////
-////////////GETTERS AND SETTERS/////////////
-////////////////////////////////////////////
+	////////////////////////////////////////////
+	//////////// GETTERS AND SETTERS/////////////
+	////////////////////////////////////////////
 
 	/**
 	 * @return the tipo
@@ -75,14 +73,13 @@ public class Habitacion
 		return tipo;
 	}
 
-
 	/**
-	 * @param tipo the tipo to set
+	 * @param tipo
+	 *            the tipo to set
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
 
 	/**
 	 * @return the cupo
@@ -91,14 +88,13 @@ public class Habitacion
 		return cupo;
 	}
 
-
 	/**
-	 * @param cupo the cupo to set
+	 * @param cupo
+	 *            the cupo to set
 	 */
 	public void setCupo(Integer cupo) {
 		this.cupo = cupo;
 	}
-
 
 	/**
 	 * @return the precio
@@ -107,14 +103,13 @@ public class Habitacion
 		return precio;
 	}
 
-
 	/**
-	 * @param precio the precio to set
+	 * @param precio
+	 *            the precio to set
 	 */
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-
 
 	/**
 	 * @return the ubicacion
@@ -123,30 +118,27 @@ public class Habitacion
 		return ubicacion;
 	}
 
-
 	/**
-	 * @param ubicacion the ubicacion to set
+	 * @param ubicacion
+	 *            the ubicacion to set
 	 */
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 
-
 	/**
 	 * @return the menaje
 	 */
-	public Boolean getMenaje() {
+	public Character getMenaje() {
 		return menaje;
 	}
 
-
 	/**
-	 * @param menaje the menaje to set
+	 * @param menaje
+	 *            the menaje to set
 	 */
-	public void setMenaje(Boolean menaje) {
+	public void setMenaje(Character menaje) {
 		this.menaje = menaje;
 	}
 
-	
-	
 }

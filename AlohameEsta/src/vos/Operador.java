@@ -1,6 +1,6 @@
 package vos;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.*;
 
 public class Operador {
 
