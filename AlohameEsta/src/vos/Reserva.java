@@ -22,7 +22,7 @@ public class Reserva
 	 * cancelada la reserva
 	 */
 	@JsonProperty(value = "cancelado")
-	private boolean cancelado;
+	private Boolean cancelado;
 	
 	/**
 	 * usuarioID del usuario que efectuo la reserva
@@ -46,7 +46,7 @@ public class Reserva
 ////////////////CONSTRUCTOR/////////////////
 ////////////////////////////////////////////
 
-	public Reserva(@JsonProperty(value = "fechaInicio") Date fechaInicio, @JsonProperty(value = "cancelado")boolean cancelado, @JsonProperty(value = "usuarioID")Long usuarioID, @JsonProperty(value = "operadorID") Long operadorID, @JsonProperty(value = "habitacionID") Long habitacionID)
+	public Reserva(@JsonProperty(value = "fechaInicio") Date fechaInicio, @JsonProperty(value = "cancelado") Boolean cancelado, @JsonProperty(value = "usuarioID")Long usuarioID, @JsonProperty(value = "operadorID") Long operadorID, @JsonProperty(value = "habitacionID") Long habitacionID)
 	{
 		this.fechaInicio = fechaInicio;
 		this.cancelado = cancelado;
