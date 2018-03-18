@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,12 @@ import java.util.ArrayList;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import vos.Apartamento;
+import vos.Hostal;
+import vos.Hotel;
+import vos.HotelHostal;
 import vos.Operador;
+import vos.PersonaNatural;
 import vos.Vivienda;
 
 public class DAOOperador {
@@ -138,11 +144,71 @@ public class DAOOperador {
 		return viviendamela;
 	}
 	
-	private PersonaNatural convertResultSetToPersonaNatural(ResultSet result, ResultSet resultOperador) {
-		
+	private PersonaNatural convertResultSetToPersonaNatural(ResultSet result, ResultSet resultOperador) throws SQLException {
+		Boolean banhoCompartido = result.getBoolean("BAÑO_COMPARTIDO");
+		Double costoServicios = result.getDouble("COSTO_SERVICIOS");
+		Long idOperador = result.getLong("ID_OPERADOR");
+		Integer cupoTotal = resultOperador.getInt("CUPO");
+		String correo = resultOperador.getString("CORREO");
+		String nombre = resultOperador.getString("NOMBRE");
+		String tipo = resultOperador.getString("TIPO");
+		PersonaNatural personaNatural = new PersonaNatural(idOperador, cupoTotal, correo, nombre, tipo, costoServicios, banhoCompartido);
+		return personaNatural;
 	}
 	
+	private HotelHostal convertResultSetToHotelHostal(ResultSet result, ResultSet resultOperador) throws SQLException{
+		Integer cupoTotal = resultOperador.getInt("CUPO");
+		String correo = resultOperador.getString("CORREO");
+		String nombre = resultOperador.getString("NOMBRE");
+		String tipo = resultOperador.getString("TIPO");
+		Long idOperador = resultOperador.getLong("ID_OPERADOR");
+		Boolean restaurante = result.getBoolean("RESTAURANTE");
+		Boolean piscina = result.getBoolean("PISCINA");
+		Boolean parqueadero = result.getBoolean("PARQUEADERO");
+		Boolean wifi = result.getBoolean("WIFI");
+		Boolean tvCable = result.getBoolean("TVCABLE");
+		Long numRegistro = result.getLong("NUMREGISTROSDT");
+		String direccion = result.getString("DIRECCION");
+		HotelHostal hotelHostal = new HotelHostal(idOperador, cupoTotal, correo, nombre, tipo, restaurante, piscina, parqueadero, wifi, tvCable, numRegistro, direccion);
+		return hotelHostal;
+	}
 	
+	private Hostal convertResultSetToHostal(ResultSet result, ResultSet resultOperador, ResultSet resultHostal) throws SQLException {
+		Integer cupoTotal = resultOperador.getInt("CUPO");
+		String correo = resultOperador.getString("CORREO");
+		String nombre = resultOperador.getString("NOMBRE");
+		String tipo = resultOperador.getString("TIPO");
+		Long idOperador = resultOperador.getLong("ID_OPERADOR");
+		Boolean restaurante = result.getBoolean("RESTAURANTE");
+		Boolean piscina = result.getBoolean("PISCINA");
+		Boolean parqueadero = result.getBoolean("PARQUEADERO");
+		Boolean wifi = result.getBoolean("WIFI");
+		Boolean tvCable = result.getBoolean("TVCABLE");
+		Long numRegistro = result.getLong("NUMREGISTROSDT");
+		String direccion = result.getString("DIRECCION");
+		Date horaCierra = resultHostal.getDate("HORACIERRE");
+		Date horaApertura = resultHostal.getDate("HORAAPERTURA");
+		Hostal hostal = new Hostal(idOperador, cupoTotal, correo, nombre, tipo, restaurante, piscina, parqueadero, wifi, tvCable, horaApertura, horaCierra, numRegistro, direccion);
+		return hostal;
+	}
+	
+	private Apartamento convertResultSetToApartamento(ResultSet result, ResultSet resultOperador) throws SQLException {
+		Integer cupoTotal = resultOperador.getInt("CUPO");
+		String correo = resultOperador.getString("CORREO");
+		String nombre = resultOperador.getString("NOMBRE");
+		String tipo = resultOperador.getString("TIPO");
+		Long idOperador = resultOperador.getLong("ID_OPERADOR");
+		Boolean amoblado = result.getBoolean("AMOBLADO");
+		Double precio = result.getDouble("PRECIO");
+		Boolean servicioPublico = result.getBoolean("SERVICIOPUBLICO");
+		Boolean tv = result.getBoolean("TV");
+		Boolean internet = result.getBoolean("INTERNET");
+		Boolean administracion = result.getBoolean("ADMINISTACION");
+		Apartamento apartamento = new Apartamento(idOperador, cupoTotal, correo, nombre, tipo, amoblado, servicioPublico, administracion, tv, internet, precio);
+		return apartamento;
+	}
+	
+	private 
 	
 	
 }
