@@ -173,8 +173,9 @@ public class DAOOperador {
 					apartamento.getNombre(),
 					apartamento.getTipo()
 					);
-			sql += String.format("INSERT INTO %1$s.APARTAMENTO(ID_OPERADOR,AMOBLADO,PRECIO,SERVICIOPUBLICO,TV,INTERNET,ADMINISTRACION) VALUE(%2$d,'%3$d',%4$d,'%5$d','%6$d','%7$d','%8$d','%9$d');", 
+			sql += String.format("INSERT INTO %1$s.APARTAMENTO(ID_OPERADOR,AMOBLADO,PRECIO,SERVICIOPUBLICO,TV,INTERNET,ADMINISTRACION) VALUE(%2$d,'%3$c',%4$f,'%5$c','%6$c','%7$c','%8$c');", 
 					USUARIO,
+					apartamento.getIdOperador(),
 					boolToInt(apartamento.getAmoblado()),
 					apartamento.getPrecio(),
 					boolToInt(apartamento.getServicioPublico()),
@@ -193,8 +194,9 @@ public class DAOOperador {
 					hostal.getNombre(),
 					hostal.getTipo()
 					);
-			sql += 	String.format("INSERT INTO %1$s.HOTEL(ID_OPERADOR,RESTAURANTE,PISCINA,PARQUEADERO,WIFI,TVCABLE,NUMREGISTROSDT,DIRECCION,TIPO) VALUES(%2$d,'%3$d','%4$d','%5$d','%6$d','%7$d',%8$d,%9$s,%10$s);", 
+			sql += 	String.format("INSERT INTO %1$s.HOTEL(ID_OPERADOR,RESTAURANTE,PISCINA,PARQUEADERO,WIFI,TVCABLE,NUMREGISTROSDT,DIRECCION,TIPO) VALUES(%2$d,'%3$c','%4$c','%5$c','%6$c','%7$c',%8$d,%9$s,%10$s);", 
 					USUARIO,
+					hostal.getIdOperador(),
 					boolToInt(hostal.getRestaurante()),
 					boolToInt(hostal.getPiscina()),
 					boolToInt(hostal.getParqueadero()),
@@ -220,8 +222,9 @@ public class DAOOperador {
 					personaNatural.getNombre(),
 					personaNatural.getTipo()
 					);
-			sql+= String.format("INSERT INTO %1$s.PERSONANATURAL(ID_OPERADOR,COSTO_SERVICIOS,BAÑO_COMPARTIDO) VALUES(%2$d,%3$d,'%4$d');", 
+			sql+= String.format("INSERT INTO %1$s.PERSONANATURAL(ID_OPERADOR,COSTO_SERVICIOS,BAÑO_COMPARTIDO) VALUES(%2$d,%3$f,'%4$c');", 
 					USUARIO,
+					personaNatural.getIdOperador(),
 					personaNatural.getCostoServicios(),
 					boolToInt(personaNatural.getBanhoCompartido())); 
 			break;
@@ -235,7 +238,7 @@ public class DAOOperador {
 					vivienda.getNombre(),
 					vivienda.getTipo()
 					);
-			sql += String.format("INSERT INTO %1$s.VIVIENDA(ID_OPERADOR,MENAJE,DIAS_ALQUILADA,NUMERO_HABITACIONES,UBICACION,PRECIO,SEGURO) VALUES (%2$d,'%3$d',%4$d,%5$d,'%6$d',%7$d,'%8$d')",
+			sql += String.format("INSERT INTO %1$s.VIVIENDA(ID_OPERADOR,MENAJE,DIAS_ALQUILADA,NUMERO_HABITACIONES,UBICACION,PRECIO,SEGURO) VALUES (%2$d,'%3$c',%4$d,%5$d,'%6$d',%7$f,'%8$d')",
 					USUARIO,
 					vivienda.getIdOperador(),
 					boolToInt(vivienda.getMenaje()),
@@ -255,7 +258,7 @@ public class DAOOperador {
 					viviendaUni.getNombre(),
 					viviendaUni.getTipo()
 					);
-			sql+= String.format("INSERT INTO %1%s.VIVIENDAUNI(ID_OPERADOR,SALAS_DE_ESTUDIO_COSTO,RESTAURANTE_COSTO,GIMNASIO_COSTO,UBICACION,CAPACIDAD) VALUES(%2$d, %3$d, %4$d, %5$d, '%6$s',%7$d)",
+			sql+= String.format("INSERT INTO %1%s.VIVIENDAUNI(ID_OPERADOR,SALAS_DE_ESTUDIO_COSTO,RESTAURANTE_COSTO,GIMNASIO_COSTO,UBICACION,CAPACIDAD) VALUES(%2$d, %3$f, %4$f, %5$f, '%6$s',%7$d)",
 					USUARIO,
 					viviendaUni.getIdOperador(),
 					viviendaUni.getSalasDeEstudioCosto(),
@@ -274,8 +277,9 @@ public class DAOOperador {
 					hotel.getNombre(),
 					hotel.getTipo()
 					);
-			sql += 	String.format("INSERT INTO %1$s.HOTEL(ID_OPERADOR,RESTAURANTE,PISCINA,PARQUEADERO,WIFI,TVCABLE,NUMREGISTROSDT,DIRECCION,TIPO) VALUES(%2$d,'%3$d','%4$d','%5$d','%6$d','%7$d',%8$d,%9$s,%10$s);", 
+			sql += 	String.format("INSERT INTO %1$s.HOTEL(ID_OPERADOR,RESTAURANTE,PISCINA,PARQUEADERO,WIFI,TVCABLE,NUMREGISTROSDT,DIRECCION,TIPO) VALUES(%2$d,'%3$c','%4$c','%5$c','%6$c','%7$c',%8$d,%9$s,%10$s);", 
 					USUARIO,
+					hotel.getIdOperador(),
 					boolToInt(hotel.getRestaurante()),
 					boolToInt(hotel.getPiscina()),
 					boolToInt(hotel.getParqueadero()),
@@ -309,9 +313,9 @@ public class DAOOperador {
 	
 	public void updateOperador(Operador operador) throws SQLException {
 		StringBuilder sql = new StringBuilder();
-		sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-		sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", operador.getCorreo(),operador.getCupoTotal(),operador.getNombre(), operador.getTipo()));
-		sql.append(String.format("WHERE ID_OPERADOR = %d;", operador.getIdOperador()));
+		sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+		sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s'", operador.getCorreo(),operador.getCupoTotal(),operador.getNombre(), operador.getTipo()));
+		sql.append(String.format(" WHERE ID_OPERADOR = %d;", operador.getIdOperador()));
 		
 		System.out.println(sql);
 		
@@ -326,39 +330,97 @@ public class DAOOperador {
 	 switch(tipo) {
 		case "APARTAMENTO": 
 			Apartamento apartamento = (Apartamento)operador;
-			sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", apartamento.getCorreo(),apartamento.getCupoTotal(),apartamento.getNombre(), apartamento.getTipo()));
+			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s' ", apartamento.getCorreo(),apartamento.getCupoTotal(),apartamento.getNombre(), apartamento.getTipo()));
+			sql.append(String.format("WHERE ID_OPERADOR = %d;", apartamento.getIdOperador()));
+			sql.append(String.format("UPDATE %s.APARTAMENTO SET ", USUARIO));
+			sql.append(String.format("AMOBLADO = '%1$c' AND PRECIO = %2$f AND SERVICIOPUBLICO ='%3$c' AND TV = '%4$c' AND INTERNET = '%5$c' AND ADMINISTRACION ='%6$c' ",
+					apartamento.getAmoblado(),
+					apartamento.getPrecio(), 
+					apartamento.getServicioPublico(),
+					apartamento.getTv(),
+					apartamento.getInternet(),
+					apartamento.getAdministracion()));
 			sql.append(String.format("WHERE ID_OPERADOR = %d;", apartamento.getIdOperador()));
 			break;
 		case "HOSTAL":
 			Hostal hostal = (Hostal)operador;
-			sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", hostal.getCorreo(),hostal.getCupoTotal(),hostal.getNombre(), hostal.getTipo()));
-			sql.append(String.format("WHERE ID_OPERADOR = %d;", hostal.getIdOperador()));
+			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s' ", hostal.getCorreo(),hostal.getCupoTotal(),hostal.getNombre(), hostal.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", hostal.getIdOperador()));
+			sql.append(String.format("UPDATE %s.HOTEL SET ", USUARIO));
+			sql.append(String.format("RESTAURANTE = '%1$c' AND PISCINA ='%2$c' AND PARQUEADERO='%3$c' AND WIFI ='%4$c' AND TVCABLE='%5$c' AND NUMREGISTROSDT =%6$d AND DIRECCION = '%7$s' AND TIPO = '%8$s'", 
+					boolToInt(hostal.getRestaurante()),
+					boolToInt(hostal.getPiscina()),
+					boolToInt(hostal.getParqueadero()),
+					boolToInt(hostal.getWifi()),
+					boolToInt(hostal.getTvCable()),
+					hostal.getNumRegisto(),
+					hostal.getDireccion(),
+					hostal.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", hostal.getIdOperador()));
+			sql.append(String.format("UPDATE %s.HOSTAL SET ", USUARIO));
+			sql.append(String.format("HORACIERRE=%1$d AND HORAAPERTURA = %2$d",
+					hostal.getHoraCierre(),
+					hostal.getHoraApertura()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", hostal.getIdOperador()));
 			break;
 		case "PERSONANATURAL":
 			PersonaNatural personaNatural = (PersonaNatural)operador;
-			sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", personaNatural.getCorreo(),personaNatural.getCupoTotal(),personaNatural.getNombre(), personaNatural.getTipo()));
-			sql.append(String.format("WHERE ID_OPERADOR = %d;", personaNatural.getIdOperador()));
+			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s'", personaNatural.getCorreo(),personaNatural.getCupoTotal(),personaNatural.getNombre(), personaNatural.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", personaNatural.getIdOperador()));
+			sql.append(String.format("UPDATE %s.PERSONANATURAL SET ", USUARIO));
+			sql.append(String.format("COSTO_SERVICIOS = %1$f AND BAÑO_COMPARTIDO= '%2$c'", 
+					personaNatural.getCostoServicios(),
+					boolToInt(personaNatural.getBanhoCompartido())));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", personaNatural.getIdOperador()));
 			break;
 		case "VIVIENDA":
 			Vivienda vivienda = (Vivienda)operador;
-			sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", vivienda.getCorreo(),vivienda.getCupoTotal(),vivienda.getNombre(), vivienda.getTipo()));
-			sql.append(String.format("WHERE ID_OPERADOR = %d;", vivienda.getIdOperador()));
+			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s'", vivienda.getCorreo(),vivienda.getCupoTotal(),vivienda.getNombre(), vivienda.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", vivienda.getIdOperador()));
+			sql.append(String.format("UPDATE %s.PERSONANATURAL SET ", USUARIO));
+			sql.append(String.format("MENAJE = '%1$c'AND DIAS_ALQUILADA=%2$d AND NUMERO_HABITACIONES=%3$d AND UBICACION = '%4$s' AND PRECIO = %5$f AND SEGURO = '%6$s'", 
+					boolToInt(vivienda.getMenaje()),
+					vivienda.getDiasAlquilada(),
+					vivienda.getNumeroDeHabitaciones(),
+					vivienda.getUbicacion(),
+					vivienda.getCosto(),
+					vivienda.getSeguro()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", vivienda.getIdOperador()));
 			break;
 		case "VIVIENDAUNI":
 			ViviendaUni viviendaUni = (ViviendaUni)operador;
-			sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", viviendaUni.getCorreo(),viviendaUni.getCupoTotal(),viviendaUni.getNombre(), viviendaUni.getTipo()));
-			sql.append(String.format("WHERE ID_OPERADOR = %d;", viviendaUni.getIdOperador()));
+			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s'", viviendaUni.getCorreo(),viviendaUni.getCupoTotal(),viviendaUni.getNombre(), viviendaUni.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", viviendaUni.getIdOperador()));
+			sql.append(String.format("UPDATE %s.VIVIENDAUNI SET ", USUARIO));
+			sql.append(String.format("SALAS_DE_ESTUDIO_COSTO = %1$f AND RESTAURANTE_COSTO = %2$f AND GIMNASIO_COSTO = %3$f AND UBICACION='%4$s' AND CAPACIDAD = %5$d", 
+					viviendaUni.getSalasDeEstudioCosto(),
+					viviendaUni.getRestauranteCosto(),
+					viviendaUni.getGimnasioCosto(),
+					viviendaUni.getUbicacion(),
+					viviendaUni.getCapacidad()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", viviendaUni.getIdOperador()));
 			break;
 		case "HOTEL":
 			HotelHostal hotel = (HotelHostal)operador;
-			sql.append(String.format("UPDATE %s.OPERADORES SET", USUARIO));
-			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$s AND NOMBRE = '%3$s' AND TIPO = '%4$s'", hotel.getCorreo(),hotel.getCupoTotal(),hotel.getNombre(), hotel.getTipo()));
-			sql.append(String.format("WHERE ID_OPERADOR = %d;", hotel.getIdOperador()));
+			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
+			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s'", hotel.getCorreo(),hotel.getCupoTotal(),hotel.getNombre(), hotel.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", hotel.getIdOperador()));
+			sql.append(String.format("UPDATE %s.HOTEL SET ", USUARIO));
+			sql.append(String.format("RESTAURANTE = '%1$c' AND PISCINA ='%2$c' AND PARQUEADERO='%3$c' AND WIFI ='%4$c' AND TVCABLE='%5$c' AND NUMREGISTROSDT =%6$d AND DIRECCION = '%7$s' AND TIPO = '%8$s'", 
+					boolToInt(hotel.getRestaurante()),
+					boolToInt(hotel.getPiscina()),
+					boolToInt(hotel.getParqueadero()),
+					boolToInt(hotel.getWifi()),
+					boolToInt(hotel.getTvCable()),
+					hotel.getNumRegisto(),
+					hotel.getDireccion(),
+					hotel.getTipo()));
+			sql.append(String.format(" WHERE ID_OPERADOR = %d;", hotel.getIdOperador()));
 			break;
 		default:
 			throw new Exception("tipo no es valido");
