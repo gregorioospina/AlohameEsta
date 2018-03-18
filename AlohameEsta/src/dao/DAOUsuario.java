@@ -91,9 +91,9 @@ public class DAOUsuario {
 	 * @throws Exception
 	 *             Si se genera un error dentro del metodo.
 	 */
-	public Usuario findUsuarioById(Long id) throws SQLException, Exception {
+	public Usuario findUsuarioByCodigo(Long id) throws SQLException, Exception {
 		Usuario usuario = null;
-		String sq1 = String.format("SELECT * FROM %1$s.USUARIOS WHERE ID = %2$d", USUARIO, id);
+		String sq1 = String.format("SELECT * FROM %1$s.USUARIOS WHERE CODIGO = %2$d", USUARIO, id);
 
 		PreparedStatement prepStmt = conn.prepareStatement(sq1);
 		recursos.add(prepStmt);
@@ -107,7 +107,7 @@ public class DAOUsuario {
 
 	
 	/**
-	 * Metodo que agregar la informacion de un nuevo usuario en la Base de Datos a partir del parametro ingresado<br/>
+	 * Metodo que agregar la  informacion de un nuevo usuario en la Base de Datos a partir del parametro ingresado<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
 	 * @param usuario usuario que desea agregar a la Base de Datos
 	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
@@ -137,6 +137,7 @@ public class DAOUsuario {
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append(String.format("UPDATE %s.USUARIOS SET ", USUARIO));
 		sq1.append(String.format("CODIGO  = '%1$d' AND NOMBRE = '%2$s' AND CORREO = '%3$s'", usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo()));
+		sq1.append(String.format("WHERE CODIGO = '%1$d'", usuario.getCodigoUniandes()));
 		
 		System.out.println(sq1);
 		
@@ -154,7 +155,7 @@ public class DAOUsuario {
 	 */
 	public void deleteUsuario(Usuario usuario) throws SQLException, Exception
 	{
-		String sq1 = String.format("DELETE FROM %1$s.USUARIOS WHERE CODIGO = %2$s",  USUARIO, usuario.getCodigoUniandes());
+		String sq1 = String.format("DELETE FROM %1$s.USUARIOS WHERE CODIGO = %2$d",  USUARIO, usuario.getCodigoUniandes());
 		
 		System.out.println(sq1);
 		

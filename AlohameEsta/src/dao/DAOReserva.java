@@ -48,10 +48,136 @@ public class DAOReserva {
 	////////////////////////////////////////
 	///// METODOS DE CONEXION CON LA BD/////
 	////////////////////////////////////////
-	
-	
-	
 
+	/**
+	 * Metodo que obtiene la informacion de todos los reservas en la Base de
+	 * Datos <br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * 
+	 * @return lista con la informacion de todos los reservas que se encuentran
+	 *         en la Base de Datos
+	 * @throws SQLException
+	 *             Genera excepcion si hay error en la conexion o en la consulta
+	 *             SQL
+	 * @throws Exception
+	 *             Si se genera un error dentro del metodo.
+	 */
+	public ArrayList<Reserva> getReserva() throws SQLException, Exception {
+		ArrayList<Reserva> reservas = new ArrayList<>();
+		String sq1 = String.format("SELECT * FROM %1$s.RESERVAS", USUARIO);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sq1);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		while (rs.next()) {
+			reservas.add(convertResultToReserva(rs));
+		}
+		return reservas;
+
+	}
+
+	/**
+	 * Metodo que obtiene la informacion del reserva en la Base de Datos que
+	 * tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * 
+	 * @param id
+	 *            el identificador del reserva
+	 * @return la informacion del reserva que cumple con los criterios de la
+	 *         sentecia SQL Null si no existe el reserva conlos criterios
+	 *         establecidos
+	 * @throws SQLException
+	 *             SQLException Genera excepcion si hay error en la conexion o
+	 *             en la consulta SQL
+	 * @throws Exception
+	 *             Si se genera un error dentro del metodo.
+	 */
+	public Reserva findReservaById(Long id) throws SQLException, Exception {
+		Reserva reserva = null;
+		String sq1 = String.format("SELECT * FROM %1$s.RESERVAS WHERE ID_RESERVA = %2$d", USUARIO, id);
+
+		PreparedStatement prepstmt = conn.prepareStatement(sq1);
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+
+		while (rs.next()) {
+			reserva = convertResultToReserva(rs);
+		}
+
+		return reserva;
+	}
+
+	/**
+	 * Metodo que agregar la informacion de una nueva reserva en la Base de
+	 * Datos a partir del parametro ingresado<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * 
+	 * @param Reserva
+	 *            reserva que desea agregar a la Base de Datos
+	 * @throws SQLException
+	 *             SQLException Genera excepcion si hay error en la conexion o
+	 *             en la consulta SQL
+	 * @throws Exception
+	 *             Si se genera un error dentro del metodo.
+	 */
+	public void addReserva(Reserva reserva) throws SQLException, Exception {
+		String sq1 = String.format(
+				"INSERT INTO %1$s.RESERVAS (ID_RESERVA, CODIGOUNIANDINO, ID_OPERADOR, CANCELADO, PRECIO, ID_HABITACION, FECHA_INICIAL, FECHA_FINAL) VALUES (%1$d, %2$d, %3$d, %4$s, %5$d, %6$d, %7$s, %8$s)",
+				reserva.getIdReserva(), reserva.getidUsuario(), reserva.getidOperador(), reserva.getCancelado(),
+				reserva.getPrecio(), reserva.getidHabitacion(), reserva.getFechaInicio(), reserva.getFechaFinal());
+
+		System.out.println(sq1);
+
+		PreparedStatement prpstmt = conn.prepareStatement(sq1);
+		recursos.add(prpstmt);
+		prpstmt.executeQuery();
+	}
+
+	/**
+	 * Metodo que actualiza la informacion del usuario en la Base de Datos que
+	 * tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * 
+	 * @param usuario
+	 *            usuario que desea actualizar a la Base de Datos
+	 * @throws SQLException
+	 *             SQLException Genera excepcion si hay error en la conexion o
+	 *             en la consulta SQL
+	 * @throws Exception
+	 *             Si se genera un error dentro del metodo.
+	 */
+	public void updateReservas(Reserva reserva) throws SQLException, Exception {
+		StringBuilder sq1 = new StringBuilder();
+		sq1.append(String.format("UPDATE %s.RESERVAS SET ", USUARIO));
+		sq1.append(String.format(
+				"ID_RESERVA = '%1$d', CODIGOUNIANDINO = '%2$d', ID_OPERADOR = '%2$d', CANCELADO = '%2$s', PRECIO = '%2$d', ID_HABITACION = '%2$d', FECHA_INICIAL = '%2$s', FECHA_FINAL = '%2$s'",
+				reserva.getIdReserva(), reserva.getidUsuario(), reserva.getidOperador(), reserva.getCancelado(),
+				reserva.getPrecio(), reserva.getidHabitacion(), reserva.getFechaInicio(), reserva.getFechaFinal()));
+
+		System.out.println(sq1);
+
+		PreparedStatement prepStmt = conn.prepareStatement(sq1.toString());
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
+
+	/**
+	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
+	 * @param reserva reserva que desea actualizar a la Base de Datos
+	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
+	 * @throws Exception Si se genera un error dentro del metodo.
+	 */
+	public void deleteReserva(Reserva reserva) throws SQLException, Exception
+	{
+		String sq1 = String.format("DELETE FROM %1$s.RESERVAS WHERE ID_RESERVA = %2$d", USUARIO, reserva.getIdReserva());
+		System.out.println(sq1);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sq1);
+		recursos.add(prepStmt);
+		prepStmt.executeQuery();
+	}
 	////////////////////////////////
 	////// METODOS AUXILIARES////////
 	////////////////////////////////
@@ -65,8 +191,9 @@ public class DAOReserva {
 		String cancelado = resultSet.getString("CANCELADO");
 		Date fechaInicial = resultSet.getDate("FECHA_INICIAL");
 		Date fechaFinal = resultSet.getDate("FECHA_FINAL");
-		
-		Reserva reserva = new Reserva(idReserva, codigoUsuario, idOperador, cancelado, precio, idHabitacion, fechaInicial, fechaFinal);
+
+		Reserva reserva = new Reserva(idReserva, codigoUsuario, idOperador, cancelado, precio, idHabitacion,
+				fechaInicial, fechaFinal);
 
 		return reserva;
 	}
