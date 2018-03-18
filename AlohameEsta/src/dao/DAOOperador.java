@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import vos.Operador;
 import vos.Vivienda;
@@ -116,7 +117,8 @@ public class DAOOperador {
 		String correo = result.getString("CORREO");
 		String nombre = result.getString("NOMBRE");
 		Integer cupoTotal = result.getInt("CUPO");
-		Operador operamela = new Operador(idOperador, cupoTotal, correo, nombre);
+		String tipo=result.getString("TIPO");
+		Operador operamela = new Operador(idOperador, cupoTotal, correo, nombre,tipo);
 		return operamela;
 	}
 	
@@ -131,8 +133,13 @@ public class DAOOperador {
 		Integer cupoTotal = resultOperador.getInt("CUPO");
 		String correo = resultOperador.getString("CORREO");
 		String nombre = resultOperador.getString("NOMBRE");
-		Vivienda viviendamela = new Vivienda(idOperador, cupoTotal, correo, nombre, numeroHabitaciones, ubicacion, menaje, precio, seguro, diasAlquilada);
+		String tipo = resultOperador.getString("TIPO");
+		Vivienda viviendamela = new Vivienda(idOperador, cupoTotal, correo, nombre, tipo, numeroHabitaciones, ubicacion, menaje, precio, seguro, diasAlquilada);
 		return viviendamela;
+	}
+	
+	private PersonaNatural convertResultSetToPersonaNatural(ResultSet result, ResultSet resultOperador) {
+		
 	}
 	
 	

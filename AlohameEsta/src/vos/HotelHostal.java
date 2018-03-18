@@ -39,11 +39,11 @@ public class HotelHostal extends Operador {
 	 */
 	public HotelHostal(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "restaurante") Boolean restaurante,
+			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value="tipo") String tipo,@JsonProperty(value = "restaurante") Boolean restaurante,
 			@JsonProperty(value = "piscina") Boolean piscina,
 			@JsonProperty(value = "parqueadero") Boolean parqueadero, @JsonProperty(value = "wifi") Boolean wifi,
 			@JsonProperty(value = "tvCable") Boolean tvCable) {
-		super(idOperador, cupoTotal, correo, nombre);
+		super(idOperador, cupoTotal, correo, nombre,tipo);
 		this.restaurante = restaurante;
 		this.piscina = piscina;
 		this.parqueadero = parqueadero;

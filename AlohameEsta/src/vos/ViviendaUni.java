@@ -36,12 +36,12 @@ public class ViviendaUni extends Operador {
 	 */
 	public ViviendaUni(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre,
+			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo,
 			@JsonProperty(value = "salasDeEstudioCosto") Integer salasDeEstudioCosto,
 			@JsonProperty(value = "restauranteCosto") Integer restauranteCosto,
 			@JsonProperty(value = "gimansioCosto") Integer gimnasioCosto,
 			@JsonProperty(value = "ubicacion") String ubicacion, Short capacidad) {
-		super(idOperador, cupoTotal, correo, nombre);
+		super(idOperador, cupoTotal, correo, nombre,tipo);
 		this.salasDeEstudioCosto = salasDeEstudioCosto;
 		this.restauranteCosto = restauranteCosto;
 		this.gimnasioCosto = gimnasioCosto;
