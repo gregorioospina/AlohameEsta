@@ -20,6 +20,13 @@ public class Usuario
 	@JsonProperty(value = "nombre")
 	private String nombre;
 	
+	/**
+	 * COrreo del usuario
+	 */
+	@JsonProperty(value = "correo") 
+	private String correo;
+	
+	
 	
 ////////////////////////////////////////////
 ////////////////CONSTRUCTOR/////////////////
@@ -31,10 +38,11 @@ public class Usuario
 	 * @param codigo
 	 * @param nombre
 	 */
-	public Usuario(@JsonProperty(value = "codigoUniandes") Long codigo, @JsonProperty(value = "nombre") String nombre)
+	public Usuario(@JsonProperty(value = "codigoUniandes") Long codigo, @JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "correo") String correo)
 	{
 		this.codigoUniandes = codigo;
 		this.nombre = nombre;
+		this.correo = correo;
 	}
 	
 ////////////////////////////////////////////
@@ -70,6 +78,20 @@ public class Usuario
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	/**
+	 * @return the correo
+	 */
+	public String getCorreo() {
+		return correo;
+	}
+
+	/**
+	 * @param correo the correo to set
+	 */
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 	
 	

@@ -19,25 +19,25 @@ public class Reserva {
 	 * Cancelado, booleano que especifica si ha sido cancelada la reserva
 	 */
 	@JsonProperty(value = "cancelado")
-	private Character cancelado;
+	private String cancelado;
 
 	/**
-	 * usuarioID del usuario que efectuo la reserva
+	 * idUsuario del usuario que efectuo la reserva
 	 */
-	@JsonProperty(value = "usuarioID")
-	private Long usuarioID;
+	@JsonProperty(value = "idUsuario")
+	private Long idUsuario;
 
 	/**
-	 * operadorID del operador ofreciendo el servicio
+	 * idOperador del operador ofreciendo el servicio
 	 */
-	@JsonProperty(value = "operadorID")
-	private Long operadorID;
+	@JsonProperty(value = "idOperador")
+	private Long idOperador;
 
 	/**
-	 * habitacionID reservado por el usuario
+	 * idHabitacion reservado por el usuario
 	 */
-	@JsonProperty(value = "habitacionID")
-	private Long habitacionID;
+	@JsonProperty(value = "idHabitacion")
+	private Long idHabitacion;
 
 	/**
 	 * Valor a pagar por la reserva
@@ -50,6 +50,13 @@ public class Reserva {
 	 */
 	@JsonProperty(value = "idReserva")
 	private Long idReserva;
+	
+	@JsonProperty(value = "fechaFinal") 
+	private Date fechaFinal;
+
+	
+	
+	
 
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
@@ -61,22 +68,27 @@ public class Reserva {
 	 * 
 	 * @param fechaInicio
 	 * @param cancelado
-	 * @param usuarioID
-	 * @param operadorID
-	 * @param habitacionID
+	 * @param idUsuario
+	 * @param idOperador
+	 * @param idHabitacion
 	 * @param idReserva
 	 */
-	public Reserva(@JsonProperty(value = "idReserva") Long idReserva,
+	public Reserva(@JsonProperty(value = "idReserva") Long idReserva, 
+			@JsonProperty(value = "idUsuario") Long idUsuario,
+			@JsonProperty(value = "idOperador") Long idOperador,
+			@JsonProperty(value = "cancelado") String cancelado,
+			@JsonProperty(value = "precio") Double precio,
+			@JsonProperty(value = "idHabitacion") Long idHabitacion,
 			@JsonProperty(value = "fechaInicio") Date fechaInicio,
-			@JsonProperty(value = "cancelado") Character cancelado, @JsonProperty(value = "usuarioID") Long usuarioID,
-			@JsonProperty(value = "operadorID") Long operadorID,
-			@JsonProperty(value = "habitacionID") Long habitacionID) {
+			@JsonProperty(value = "fechaInicio") Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
 		this.idReserva = idReserva;
 		this.fechaInicio = fechaInicio;
 		this.cancelado = cancelado;
-		this.usuarioID = usuarioID;
-		this.operadorID = operadorID;
-		this.habitacionID = habitacionID;
+		this.idUsuario = idUsuario;
+		this.idOperador = idOperador;
+		this.idHabitacion = idHabitacion;
+		this.precio = precio;
 	}
 
 	////////////////////////////////////////////
@@ -116,7 +128,7 @@ public class Reserva {
 	/**
 	 * @return the cancelado
 	 */
-	public Character getCancelado() {
+	public String getCancelado() {
 		return cancelado;
 	}
 
@@ -124,53 +136,53 @@ public class Reserva {
 	 * @param cancelado
 	 *            the cancelado to set
 	 */
-	public void setCancelado(Character cancelado) {
+	public void setCancelado(String cancelado) {
 		this.cancelado = cancelado;
 	}
 
 	/**
-	 * @return the usuarioID
+	 * @return the idUsuario
 	 */
-	public Long getUsuarioID() {
-		return usuarioID;
+	public Long getidUsuario() {
+		return idUsuario;
 	}
 
 	/**
-	 * @param usuarioID
-	 *            the usuarioID to set
+	 * @param idUsuario
+	 *            the idUsuario to set
 	 */
-	public void setUsuarioID(Long usuarioID) {
-		this.usuarioID = usuarioID;
+	public void setidUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	/**
-	 * @return the operadorID
+	 * @return the idOperador
 	 */
-	public Long getOperadorID() {
-		return operadorID;
+	public Long getidOperador() {
+		return idOperador;
 	}
 
 	/**
-	 * @param operadorID
-	 *            the operadorID to set
+	 * @param idOperador
+	 *            the idOperador to set
 	 */
-	public void setOperadorID(Long operadorID) {
-		this.operadorID = operadorID;
+	public void setidOperador(Long idOperador) {
+		this.idOperador = idOperador;
 	}
 
 	/**
-	 * @return the habitacionID
+	 * @return the idHabitacion
 	 */
-	public Long getHabitacionID() {
-		return habitacionID;
+	public Long getidHabitacion() {
+		return idHabitacion;
 	}
 
 	/**
-	 * @param habitacionID
-	 *            the habitacionID to set
+	 * @param idHabitacion
+	 *            the idHabitacion to set
 	 */
-	public void setHabitacionID(Long habitacionID) {
-		this.habitacionID = habitacionID;
+	public void setidHabitacion(Long idHabitacion) {
+		this.idHabitacion = idHabitacion;
 	}
 
 	/**
@@ -186,6 +198,20 @@ public class Reserva {
 	 */
 	public void setIdReserva(Long idReserva) {
 		this.idReserva = idReserva;
+	}
+
+	/**
+	 * @return the fechaFinal
+	 */
+	public Date getFechaFinal() {
+		return fechaFinal;
+	}
+
+	/**
+	 * @param fechaFinal the fechaFinal to set
+	 */
+	public void setFechaFinal(Date fechaFinal) {
+		this.fechaFinal = fechaFinal;
 	}
 
 }
