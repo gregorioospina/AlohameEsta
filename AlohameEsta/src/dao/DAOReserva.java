@@ -129,6 +129,74 @@ public class DAOReserva {
 		
 		return respu;
 	}
+	
+	/**
+	 * Metodo que devuelve los operadores con sus nombres y la ganancia anual.
+	 * @return
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	public ArrayList<String> RFC1() throws SQLException, Exception
+	{
+		ArrayList<String> respu = new ArrayList<>();
+		
+		StringBuilder sq1 = new StringBuilder();
+		sq1.append("SELECT op.NOMBRE, re.ID_OPERADOR ID_OPERADOR, SUM(PRECIO) as GANANCIA_ANUAL");
+		sq1.append(String.format("FROM %1$s.RESERVAS re , %1$s.OPERADORES op", USUARIO));
+		sq1.append("WHERE re.FECHA_INICIAL > CURRENT_DATE - 365");
+		sq1.append("AND re.ID_OPERADOR = op.ID_OPERADOR");
+		sq1.append("GROUP BY re.ID_OPERADOR, op.NOMBRE");
+		sq1.append("ORDER BY GANANCIA_ANUAL DESC;");
+		
+		System.out.println(sq1);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sq1.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+		
+		while(rs.next())
+		{
+			System.out.println(rs.toString() + "ARREGLAR ESTO PARA QUE SEA BONITO");
+			respu.add(rs.toString());
+		}
+		
+		return respu;
+	}
+	
+	
+	/**
+	 * MEtodo que encuentra las 20 ofertas mas populares basado en el historial de reservas pasadas.
+	 * @return Una lista de Strings que describen el operador y la habitacion mas solicitada.
+	 * @throws SQLException
+	 * @throws Exception
+	 */
+	public ArrayList<String> RFC2() throws SQLException, Exception
+	{
+		ArrayList<String> respu = new ArrayList<>();
+		
+		StringBuilder sq1 = new StringBuilder();
+		sq1.append("SELECT DISTINCT ID_OPERADOR, ID_HABITACION");
+		sq1.append(String.format("FROM %s.RESERVAS", USUARIO));
+		sq1.append("GROUP BY ID_OPERADOR, ID_HABITACION");
+		sq1.append("ORDER BY COUNT(ID_OPERADOR) DESC");
+		
+		System.out.println(sq1);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sq1.toString());
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+		
+		int i = 0;
+		while(rs.next() && i<=20)
+		{
+			System.out.println(rs.toString() + "ARREGLAR ESTO PARA QUE QUEDE BONITO");
+			respu.add(rs.toString());
+			i++;
+		}
+		
+		
+		return respu;
+	}
 
 	/**
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de

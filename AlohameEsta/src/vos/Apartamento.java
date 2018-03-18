@@ -38,11 +38,7 @@ public class Apartamento extends Operador {
 	@JsonProperty(value = "internet")
 	private Boolean internet;
 
-	/**
-	 * propietario del apto
-	 */
-	@JsonProperty(value = "propietario")
-	private String propietario;
+
 
 	/**
 	 * precio por mes.
@@ -70,18 +66,16 @@ public class Apartamento extends Operador {
 	 */
 	public Apartamento(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "amoblado") Boolean amoblado,
+			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo, @JsonProperty(value = "amoblado") Boolean amoblado,
 			@JsonProperty(value = "servicioPublico") Boolean servicioPublico,
 			@JsonProperty(value = "administracion") Boolean administracion, @JsonProperty(value = "tv") Boolean tv,
-			@JsonProperty(value = "internet") Boolean internet,
-			@JsonProperty(value = "propietario") String propietario, @JsonProperty(value = "precio") Double precio) {
-		super(idOperador, cupoTotal, correo, nombre);
+			@JsonProperty(value = "internet") Boolean internet, @JsonProperty(value = "precio") Double precio) {
+		super(idOperador, cupoTotal, correo, nombre, tipo);
 		this.amoblado = amoblado;
 		this.servicioPublico = servicioPublico;
 		this.administracion = administracion;
 		this.tv = tv;
 		this.internet = internet;
-		this.propietario = propietario;
 		this.precio = precio;
 	}
 
@@ -163,20 +157,7 @@ public class Apartamento extends Operador {
 		this.internet = internet;
 	}
 
-	/**
-	 * @return the propietario
-	 */
-	public String getPropietario() {
-		return propietario;
-	}
-
-	/**
-	 * @param propietario
-	 *            the propietario to set
-	 */
-	public void setPropietario(String propietario) {
-		this.propietario = propietario;
-	}
+	
 
 	/**
 	 * @return the precio

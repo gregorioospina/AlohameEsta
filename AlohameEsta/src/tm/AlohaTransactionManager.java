@@ -483,6 +483,50 @@ public class AlohaTransactionManager {
 			return respu;
 		}
 		
+		
+		/**
+		 * RFC2
+		 * @return lista con 20 ofertas mas solicitadas.
+		 * @throws Exception
+		 */
+		public ArrayList<String> RFC2() throws Exception
+		{
+			ArrayList<String> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC2();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+		
 		/**
 		 * Metodo que modela la transaccion que agrega un reserva a la base de datos. <br/>
 		 * <b> post: </b> se ha agregado el reserva que entra como parametro <br/>
@@ -616,28 +660,267 @@ public class AlohaTransactionManager {
 				}
 			}	
 		}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
+		
+		
+		
+		//---------------------------------------------------------------------//
+		//-----------------------METODOS HABITACION----------------------------//
+		//---------------------------------------------------------------------//
+		
+		/**
+		 * Metodo que modela la transaccion que retorna todos los habitacion de la base de datos. <br/>
+		 * @return List<Habitacion> - Lista de habitaciones que contiene el resultado de la consulta.
+		 * @throws Exception -  Cualquier error que se genere durante la transaccion
+		 */
+		public List<Habitacion> getAllHabitacions() throws Exception {
+			DAOHabitacion daoHabitacion = new DAOHabitacion();
+			List<Habitacion> habitacions;
+			try 
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn(conn);				
+				habitacions = daoHabitacion.getHabitaciones();
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return habitacions;
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que retorna todos los habitacion disponibles de la base de datos. <br/>
+		 * @return List<Habitacion> - Lista de habitaciones que contiene el resultado de la consulta.
+		 * @throws Exception -  Cualquier error que se genere durante la transaccion
+		 */
+		public List<Habitacion> getAllHabitacionesDisponibles() throws Exception {
+			DAOHabitacion daoHabitacion = new DAOHabitacion();
+			List<Habitacion> habitacions;
+			try 
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn(conn);
+				habitacions = daoHabitacion.getHabitacionesDisponibles();
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return habitacions;
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que retorna todos los habitacion disponibles del operador
+		 * especificado en parametro de la base de datos. <br/>
+		 * @return List<Habitacion> - Lista de habitaciones que contiene el resultado de la consulta.
+		 * @throws Exception -  Cualquier error que se genere durante la transaccion
+		 */
+		public List<Habitacion> getAllHabitacionesDisponiblesOperador(Long opID) throws Exception {
+			DAOHabitacion daoHabitacion = new DAOHabitacion();
+			List<Habitacion> habitacions;
+			try 
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn(conn);
+				habitacions = daoHabitacion.getHabitacionesDisponiblesOperador(opID);
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return habitacions;
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que agrega un habitacion a la base de datos. <br/>
+		 * <b> post: </b> se ha agregado el habitacion que entra como parametro <br/>
+		 * @param habitacion - el habitacion a agregar. habitacion != null
+		 * @throws Exception - Cualquier error que se genere agregando el habitacion
+		 */
+		public void addHabitacion(Habitacion habitacion) throws Exception 
+		{
+			
+			DAOHabitacion daoHabitacion = new DAOHabitacion( );
+			try
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn(conn);
+				daoHabitacion.addHabitacion(habitacion);
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que actualiza en la base de datos al habitacion que entra por parametro.<br/>
+		 * Solamente se actualiza si existe el habitacion en la Base de Datos <br/>
+		 * <b> post: </b> se ha actualizado el habitacion que entra como parametro <br/>
+		 * @param habitacion - Habitacion a actualizar. habitacion != null
+		 * @throws Exception - Cualquier error que se genere actualizando al habitacion.
+		 */
+		public void updateHabitacion(Habitacion habitacion) throws Exception 
+		{
+			DAOHabitacion daoHabitacion = new DAOHabitacion( );
+			try
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn( conn );
+				if(daoHabitacion.findHabitacionById(habitacion.getIdHabitacion()) == null)
+				{
+					throw new Exception("El habitacion al que esta intentando modificar no existe");
+				}
+				daoHabitacion.updateHabitacion(habitacion);		
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que elimina de la base de datos al habitacion que entra por parametro. <br/>
+		 * Solamente se actualiza si existe el habitacion en la Base de Datos <br/>
+		 * <b> post: </b> se ha eliminado el habitacion que entra por parametro <br/>
+		 * @param Habitacion - habitacion a eliminar. habitacion != null
+		 * @throws Exception - Cualquier error que se genere eliminando al habitacion.
+		 */
+		public void deleteHabitacion(Habitacion habitacion) throws Exception 
+		{
+			DAOHabitacion daoHabitacion = new DAOHabitacion( );
+			try
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn( conn );
+				if(daoHabitacion.findHabitacionById(habitacion.getIdHabitacion()) == null)
+				{
+					throw new Exception("El habitacion que esta intentando eliminar no existe");
+				}
+				daoHabitacion.deleteHabitacion(habitacion);
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
 
 }

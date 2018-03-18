@@ -127,6 +127,17 @@ public class DAOHabitacion {
 		return habitaciones;
 
 	}
+	
+	public Habitacion findHabitacionById(Long id) throws SQLException, Exception
+	{
+		String sq1 = String.format("SELECT * FROM %1$s.HABITACIONES WHERE ID_HABITACION = %2$d", USUARIO, id);
+		
+		PreparedStatement prepStmt = conn.prepareStatement(sq1);
+		recursos.add(prepStmt);
+		ResultSet rs = prepStmt.executeQuery();
+
+		return convertResultSetToHabitacion(rs);
+	}
 
 	/**
 	 * Metodo que agregar la informacion de un nuevo habitacion en la Base de
@@ -169,7 +180,7 @@ public class DAOHabitacion {
 	 * @throws Exception
 	 *             Si se genera un error dentro del metodo.
 	 */
-	public void updateUsuario(Habitacion habitacion) throws SQLException, Exception {
+	public void updateHabitacion(Habitacion habitacion) throws SQLException, Exception {
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append(String.format("UPDATE %s.HABITACION SET ", USUARIO));
 		sq1.append(String.format(

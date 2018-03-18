@@ -8,6 +8,8 @@ public class HotelHostal extends Operador {
 	//////////////// ATRIBUTOS///////////////////
 	////////////////////////////////////////////
 
+	
+	
 	@JsonProperty(value = "restaurante")
 	private Boolean restaurante;
 
@@ -22,6 +24,13 @@ public class HotelHostal extends Operador {
 
 	@JsonProperty(value = "tvCable")
 	private Boolean tvCable;
+	
+	@JsonProperty(value = "numRegistro")
+	private Long numRegisto;
+	
+	@JsonProperty(value = "direccion")
+	private String direccion;
+	
 
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
@@ -39,21 +48,51 @@ public class HotelHostal extends Operador {
 	 */
 	public HotelHostal(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "restaurante") Boolean restaurante,
+			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value="tipo") String tipo,@JsonProperty(value = "restaurante") Boolean restaurante,
 			@JsonProperty(value = "piscina") Boolean piscina,
 			@JsonProperty(value = "parqueadero") Boolean parqueadero, @JsonProperty(value = "wifi") Boolean wifi,
-			@JsonProperty(value = "tvCable") Boolean tvCable) {
-		super(idOperador, cupoTotal, correo, nombre);
+			@JsonProperty(value = "tvCable") Boolean tvCable,	@JsonProperty(value = "numRegistro") Long numRegisto, @JsonProperty(value = "direccion")String direccion) {
+		super(idOperador, cupoTotal, correo, nombre,tipo);
 		this.restaurante = restaurante;
 		this.piscina = piscina;
 		this.parqueadero = parqueadero;
 		this.wifi = wifi;
 		this.tvCable = tvCable;
+		this.numRegisto = numRegisto;
+		this.direccion = direccion;
 	}
 
 	////////////////////////////////////////////
 	//////////// GETTERS AND SETTERS/////////////
 	////////////////////////////////////////////
+
+	/**
+	 * @return the numRegisto
+	 */
+	public Long getNumRegisto() {
+		return numRegisto;
+	}
+
+	/**
+	 * @param numRegisto the numRegisto to set
+	 */
+	public void setNumRegisto(Long numRegisto) {
+		this.numRegisto = numRegisto;
+	}
+
+	/**
+	 * @return the direccion
+	 */
+	public String getDireccion() {
+		return direccion;
+	}
+
+	/**
+	 * @param direccion the direccion to set
+	 */
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 
 	/**
 	 * @return the restaurante
