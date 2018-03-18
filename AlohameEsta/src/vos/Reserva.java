@@ -19,7 +19,7 @@ public class Reserva {
 	 * Cancelado, booleano que especifica si ha sido cancelada la reserva
 	 */
 	@JsonProperty(value = "cancelado")
-	private String cancelado;
+	private boolean cancelado;
 
 	/**
 	 * idUsuario del usuario que efectuo la reserva
@@ -67,7 +67,7 @@ public class Reserva {
 	 * los valores por parametro.
 	 * 
 	 * @param fechaInicio
-	 * @param cancelado
+	 * @param cancelado2
 	 * @param idUsuario
 	 * @param idOperador
 	 * @param idHabitacion
@@ -76,7 +76,7 @@ public class Reserva {
 	public Reserva(@JsonProperty(value = "idReserva") Long idReserva, 
 			@JsonProperty(value = "idUsuario") Long idUsuario,
 			@JsonProperty(value = "idOperador") Long idOperador,
-			@JsonProperty(value = "cancelado") String cancelado,
+			@JsonProperty(value = "cancelado") boolean cancelado2,
 			@JsonProperty(value = "precio") Double precio,
 			@JsonProperty(value = "idHabitacion") Long idHabitacion,
 			@JsonProperty(value = "fechaInicio") Date fechaInicio,
@@ -84,7 +84,7 @@ public class Reserva {
 		this.fechaFinal = fechaFinal;
 		this.idReserva = idReserva;
 		this.fechaInicio = fechaInicio;
-		this.cancelado = cancelado;
+		this.cancelado = cancelado2;
 		this.idUsuario = idUsuario;
 		this.idOperador = idOperador;
 		this.idHabitacion = idHabitacion;
@@ -128,7 +128,7 @@ public class Reserva {
 	/**
 	 * @return the cancelado
 	 */
-	public String getCancelado() {
+	public boolean getCancelado() {
 		return cancelado;
 	}
 
@@ -136,7 +136,7 @@ public class Reserva {
 	 * @param cancelado
 	 *            the cancelado to set
 	 */
-	public void setCancelado(String cancelado) {
+	public void setCancelado(boolean cancelado) {
 		this.cancelado = cancelado;
 	}
 

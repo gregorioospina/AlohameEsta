@@ -12,31 +12,31 @@ public class Apartamento extends Operador {
 	 * es o no amoblado el apto
 	 */
 	@JsonProperty(value = "amoblado")
-	private Character amoblado;
+	private Boolean amoblado;
 
 	/**
 	 * incluye o no servicioPublico
 	 */
 	@JsonProperty(value = "servicioPublico")
-	private Character servicioPublico;
+	private Boolean servicioPublico;
 
 	/**
 	 * incluye o no administracion
 	 */
 	@JsonProperty(value = "administracion")
-	private Character administracion;
+	private Boolean administracion;
 
 	/**
 	 * tiene o no tv
 	 */
 	@JsonProperty(value = "tv")
-	private Character tv;
+	private Boolean tv;
 
 	/**
 	 * tiene o no internet
 	 */
 	@JsonProperty(value = "internet")
-	private Character internet;
+	private Boolean internet;
 
 	/**
 	 * propietario del apto
@@ -70,10 +70,10 @@ public class Apartamento extends Operador {
 	 */
 	public Apartamento(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "amoblado") Character amoblado,
-			@JsonProperty(value = "servicioPublico") Character servicioPublico,
-			@JsonProperty(value = "administracion") Character administracion, @JsonProperty(value = "tv") Character tv,
-			@JsonProperty(value = "internet") Character internet,
+			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "amoblado") Boolean amoblado,
+			@JsonProperty(value = "servicioPublico") Boolean servicioPublico,
+			@JsonProperty(value = "administracion") Boolean administracion, @JsonProperty(value = "tv") Boolean tv,
+			@JsonProperty(value = "internet") Boolean internet,
 			@JsonProperty(value = "propietario") String propietario, @JsonProperty(value = "precio") Double precio) {
 		super(idOperador, cupoTotal, correo, nombre);
 		this.amoblado = amoblado;
@@ -91,7 +91,7 @@ public class Apartamento extends Operador {
 	/**
 	 * @return the amoblado
 	 */
-	public Character getAmoblado() {
+	public Boolean getAmoblado() {
 		return amoblado;
 	}
 
@@ -99,14 +99,14 @@ public class Apartamento extends Operador {
 	 * @param amoblado
 	 *            the amoblado to set
 	 */
-	public void setAmoblado(Character amoblado) {
+	public void setAmoblado(Boolean amoblado) {
 		this.amoblado = amoblado;
 	}
 
 	/**
 	 * @return the servicioPublico
 	 */
-	public Character getServicioPublico() {
+	public Boolean getServicioPublico() {
 		return servicioPublico;
 	}
 
@@ -114,14 +114,14 @@ public class Apartamento extends Operador {
 	 * @param servicioPublico
 	 *            the servicioPublico to set
 	 */
-	public void setServicioPublico(Character servicioPublico) {
+	public void setServicioPublico(Boolean servicioPublico) {
 		this.servicioPublico = servicioPublico;
 	}
 
 	/**
 	 * @return the administracion
 	 */
-	public Character getAdministracion() {
+	public Boolean getAdministracion() {
 		return administracion;
 	}
 
@@ -129,14 +129,14 @@ public class Apartamento extends Operador {
 	 * @param administracion
 	 *            the administracion to set
 	 */
-	public void setAdministracion(Character administracion) {
+	public void setAdministracion(Boolean administracion) {
 		this.administracion = administracion;
 	}
 
 	/**
 	 * @return the tv
 	 */
-	public Character getTv() {
+	public Boolean getTv() {
 		return tv;
 	}
 
@@ -144,14 +144,14 @@ public class Apartamento extends Operador {
 	 * @param tv
 	 *            the tv to set
 	 */
-	public void setTv(Character tv) {
+	public void setTv(Boolean tv) {
 		this.tv = tv;
 	}
 
 	/**
 	 * @return the internet
 	 */
-	public Character getInternet() {
+	public Boolean getInternet() {
 		return internet;
 	}
 
@@ -159,7 +159,7 @@ public class Apartamento extends Operador {
 	 * @param internet
 	 *            the internet to set
 	 */
-	public void setInternet(Character internet) {
+	public void setInternet(Boolean internet) {
 		this.internet = internet;
 	}
 

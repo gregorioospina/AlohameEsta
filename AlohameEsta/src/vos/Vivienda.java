@@ -24,7 +24,7 @@ public class Vivienda extends Operador {
 	 * Tiene o no menaje
 	 */
 	@JsonProperty(value = "menaje")
-	private Character menaje;
+	private Boolean menaje;
 
 	/**
 	 * costo de alquilar la vivienda.
@@ -65,7 +65,7 @@ public class Vivienda extends Operador {
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
 			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "numeroDeHabitaciones") Integer numeroDeHabitaciones,
 			@JsonProperty(value = "ubicacion") String ubicacion,
-			@JsonProperty(value = "menaje") Character menaje, @JsonProperty(value = "costo") Double costo, @JsonProperty(value = "seguro") String seguro,
+			@JsonProperty(value = "menaje") Boolean menaje, @JsonProperty(value = "costo") Double costo, @JsonProperty(value = "seguro") String seguro,
 			@JsonProperty(value = "diasAlquilada") Integer diasAlquilada) {
 		super(idOperador, cupoTotal, correo, nombre);
 		this.numeroDeHabitaciones = numeroDeHabitaciones;
@@ -113,7 +113,7 @@ public class Vivienda extends Operador {
 	/**
 	 * @return the menaje
 	 */
-	public Character getMenaje() {
+	public Boolean getMenaje() {
 		return menaje;
 	}
 
@@ -121,7 +121,7 @@ public class Vivienda extends Operador {
 	 * @param menaje
 	 *            the menaje to set
 	 */
-	public void setMenaje(Character menaje) {
+	public void setMenaje(Boolean menaje) {
 		this.menaje = menaje;
 	}
 

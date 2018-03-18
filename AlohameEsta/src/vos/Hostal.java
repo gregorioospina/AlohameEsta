@@ -41,11 +41,11 @@ public class Hostal extends HotelHostal {
 	 */
 	public Hostal(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "restaurante") Character restaurante,
-			@JsonProperty(value = "piscina") Character piscina,
-			@JsonProperty(value = "parqueadero") Character parqueadero, @JsonProperty(value = "wifi") Character wifi,
-			@JsonProperty(value = "tvCable") Character tvCable,
-			@JsonProperty(value = "recepcion247") Character recepcion247,
+			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "restaurante") Boolean restaurante,
+			@JsonProperty(value = "piscina") Boolean piscina,
+			@JsonProperty(value = "parqueadero") Boolean parqueadero, @JsonProperty(value = "wifi") Boolean wifi,
+			@JsonProperty(value = "tvCable") Boolean tvCable,
+			@JsonProperty(value = "recepcion247") Boolean recepcion247,
 			@JsonProperty(value = "horaApertura") Date horaApertura,
 			@JsonProperty(value = "horaCierre") Date horaCierre) {
 		super(idOperador, cupoTotal, correo, nombre, restaurante, piscina, parqueadero, wifi, tvCable);

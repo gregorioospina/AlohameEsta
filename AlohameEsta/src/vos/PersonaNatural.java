@@ -12,7 +12,7 @@ public class PersonaNatural extends Operador {
 	private Double costoServicios;
 
 	@JsonProperty(value = "banhoCompartido")
-	private Character banhoCompartido;
+	private Boolean banhoCompartido;
 
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
@@ -30,7 +30,7 @@ public class PersonaNatural extends Operador {
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
 			@JsonProperty(value = "nombre") String nombre,
 			@JsonProperty(value = "costoServicios") Double costoServicios,
-			@JsonProperty(value = "banhoCompartido") Character banhoCompartido) {
+			@JsonProperty(value = "banhoCompartido") Boolean banhoCompartido) {
 		super(idOperador, cupoTotal, correo, nombre);
 		this.costoServicios = costoServicios;
 		this.banhoCompartido = banhoCompartido;
@@ -58,7 +58,7 @@ public class PersonaNatural extends Operador {
 	/**
 	 * @return the banhoCompartido
 	 */
-	public Character getBanhoCompartido() {
+	public Boolean getBanhoCompartido() {
 		return banhoCompartido;
 	}
 
@@ -66,7 +66,7 @@ public class PersonaNatural extends Operador {
 	 * @param banhoCompartido
 	 *            the banhoCompartido to set
 	 */
-	public void setBanhoCompartido(Character banhoCompartido) {
+	public void setBanhoCompartido(Boolean banhoCompartido) {
 		this.banhoCompartido = banhoCompartido;
 	}
 

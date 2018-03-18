@@ -63,8 +63,7 @@ public class Usuario
 	public void setCodigoUniandes(Long codigoUniandes) {
 		this.codigoUniandes = codigoUniandes;
 	}
-
-
+	
 	/**
 	 * @return the nombre
 	 */

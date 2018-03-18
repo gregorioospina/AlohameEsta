@@ -9,19 +9,19 @@ public class HotelHostal extends Operador {
 	////////////////////////////////////////////
 
 	@JsonProperty(value = "restaurante")
-	private Character restaurante;
+	private Boolean restaurante;
 
 	@JsonProperty(value = "piscina")
-	private Character piscina;
+	private Boolean piscina;
 
 	@JsonProperty(value = "parqueadero")
-	private Character parqueadero;
+	private Boolean parqueadero;
 
 	@JsonProperty(value = "wifi")
-	private Character wifi;
+	private Boolean wifi;
 
 	@JsonProperty(value = "tvCable")
-	private Character tvCable;
+	private Boolean tvCable;
 
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
@@ -39,10 +39,10 @@ public class HotelHostal extends Operador {
 	 */
 	public HotelHostal(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
-			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "restaurante") Character restaurante,
-			@JsonProperty(value = "piscina") Character piscina,
-			@JsonProperty(value = "parqueadero") Character parqueadero, @JsonProperty(value = "wifi") Character wifi,
-			@JsonProperty(value = "tvCable") Character tvCable) {
+			@JsonProperty(value = "nombre") String nombre, @JsonProperty(value = "restaurante") Boolean restaurante,
+			@JsonProperty(value = "piscina") Boolean piscina,
+			@JsonProperty(value = "parqueadero") Boolean parqueadero, @JsonProperty(value = "wifi") Boolean wifi,
+			@JsonProperty(value = "tvCable") Boolean tvCable) {
 		super(idOperador, cupoTotal, correo, nombre);
 		this.restaurante = restaurante;
 		this.piscina = piscina;
@@ -58,7 +58,7 @@ public class HotelHostal extends Operador {
 	/**
 	 * @return the restaurante
 	 */
-	public Character getRestaurante() {
+	public Boolean getRestaurante() {
 		return restaurante;
 	}
 
@@ -66,14 +66,14 @@ public class HotelHostal extends Operador {
 	 * @param restaurante
 	 *            the restaurante to set
 	 */
-	public void setRestaurante(Character restaurante) {
+	public void setRestaurante(Boolean restaurante) {
 		this.restaurante = restaurante;
 	}
 
 	/**
 	 * @return the piscina
 	 */
-	public Character getPiscina() {
+	public Boolean getPiscina() {
 		return piscina;
 	}
 
@@ -81,14 +81,14 @@ public class HotelHostal extends Operador {
 	 * @param piscina
 	 *            the piscina to set
 	 */
-	public void setPiscina(Character piscina) {
+	public void setPiscina(Boolean piscina) {
 		this.piscina = piscina;
 	}
 
 	/**
 	 * @return the parqueadero
 	 */
-	public Character getParqueadero() {
+	public Boolean getParqueadero() {
 		return parqueadero;
 	}
 
@@ -96,14 +96,14 @@ public class HotelHostal extends Operador {
 	 * @param parqueadero
 	 *            the parqueadero to set
 	 */
-	public void setParqueadero(Character parqueadero) {
+	public void setParqueadero(Boolean parqueadero) {
 		this.parqueadero = parqueadero;
 	}
 
 	/**
 	 * @return the wifi
 	 */
-	public Character getWifi() {
+	public Boolean getWifi() {
 		return wifi;
 	}
 
@@ -111,14 +111,14 @@ public class HotelHostal extends Operador {
 	 * @param wifi
 	 *            the wifi to set
 	 */
-	public void setWifi(Character wifi) {
+	public void setWifi(Boolean wifi) {
 		this.wifi = wifi;
 	}
 
 	/**
 	 * @return the tvCable
 	 */
-	public Character getTvCable() {
+	public Boolean getTvCable() {
 		return tvCable;
 	}
 
@@ -126,7 +126,7 @@ public class HotelHostal extends Operador {
 	 * @param tvCable
 	 *            the tvCable to set
 	 */
-	public void setTvCable(Character tvCable) {
+	public void setTvCable(Boolean tvCable) {
 		this.tvCable = tvCable;
 	}
 

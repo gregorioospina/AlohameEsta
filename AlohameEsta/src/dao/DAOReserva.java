@@ -109,6 +109,28 @@ public class DAOReserva {
 	}
 
 	/**
+	 * Metodo que encuentra las reservas por un usuario y un operador.
+	 * @throws SQLException 
+	 */
+	public ArrayList<Reserva> findReservaByUsuarioOperador(Long codigo, Long opID) throws SQLException, Exception
+	{
+		ArrayList<Reserva> respu = new ArrayList<>();
+		
+		String sq1 = String.format("SELECT * FROM %1$s.RESERVAS WHERE CODIGOUNIANDES = %2$d AND ID_OPERADOR = %3$d", USUARIO, codigo, opID);
+		
+		PreparedStatement prepstmt = conn.prepareStatement(sq1);
+		recursos.add(prepstmt);
+		ResultSet rs = prepstmt.executeQuery();
+		
+		while(rs.next())
+		{
+			respu.add(convertResultToReserva(rs));
+		}
+		
+		return respu;
+	}
+
+	/**
 	 * Metodo que agregar la informacion de una nueva reserva en la Base de
 	 * Datos a partir del parametro ingresado<br/>
 	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
@@ -163,17 +185,23 @@ public class DAOReserva {
 	}
 
 	/**
-	 * Metodo que actualiza la informacion del reserva en la Base de Datos que tiene el identificador dado por parametro<br/>
-	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>  
-	 * @param reserva reserva que desea actualizar a la Base de Datos
-	 * @throws SQLException SQLException Genera excepcion si hay error en la conexion o en la consulta SQL
-	 * @throws Exception Si se genera un error dentro del metodo.
+	 * Metodo que actualiza la informacion del reserva en la Base de Datos que
+	 * tiene el identificador dado por parametro<br/>
+	 * <b>Precondicion: </b> la conexion a sido inicializadoa <br/>
+	 * 
+	 * @param reserva
+	 *            reserva que desea actualizar a la Base de Datos
+	 * @throws SQLException
+	 *             SQLException Genera excepcion si hay error en la conexion o
+	 *             en la consulta SQL
+	 * @throws Exception
+	 *             Si se genera un error dentro del metodo.
 	 */
-	public void deleteReserva(Reserva reserva) throws SQLException, Exception
-	{
-		String sq1 = String.format("DELETE FROM %1$s.RESERVAS WHERE ID_RESERVA = %2$d", USUARIO, reserva.getIdReserva());
+	public void deleteReserva(Reserva reserva) throws SQLException, Exception {
+		String sq1 = String.format("DELETE FROM %1$s.RESERVAS WHERE ID_RESERVA = %2$d", USUARIO,
+				reserva.getIdReserva());
 		System.out.println(sq1);
-		
+
 		PreparedStatement prepStmt = conn.prepareStatement(sq1);
 		recursos.add(prepStmt);
 		prepStmt.executeQuery();
@@ -188,7 +216,7 @@ public class DAOReserva {
 		Long idHabitacion = resultSet.getLong("ID_HABITACION");
 		Long idOperador = resultSet.getLong("ID_OPERADOR");
 		Double precio = resultSet.getDouble("PRECIO");
-		String cancelado = resultSet.getString("CANCELADO");
+		Boolean cancelado = resultSet.getBoolean("CANCELADO");
 		Date fechaInicial = resultSet.getDate("FECHA_INICIAL");
 		Date fechaFinal = resultSet.getDate("FECHA_FINAL");
 

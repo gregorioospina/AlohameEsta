@@ -36,7 +36,7 @@ public class Habitacion {
 	 * Hay o no menaje en la habitacion
 	 */
 	@JsonProperty(value = "menaje")
-	private Character menaje;
+	private Boolean menaje;
 
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
@@ -54,7 +54,7 @@ public class Habitacion {
 	 */
 	public Habitacion(@JsonProperty(value = "tipo") String tipo, @JsonProperty(value = "cupo") Integer cupo,
 			@JsonProperty(value = "precio") Double precio, @JsonProperty(value = "ubicacion") String ubicacion,
-			@JsonProperty(value = "menaje") Character menaje) {
+			@JsonProperty(value = "menaje") Boolean menaje) {
 		this.tipo = tipo;
 		this.cupo = cupo;
 		this.precio = precio;
@@ -129,7 +129,7 @@ public class Habitacion {
 	/**
 	 * @return the menaje
 	 */
-	public Character getMenaje() {
+	public Boolean getMenaje() {
 		return menaje;
 	}
 
@@ -137,7 +137,7 @@ public class Habitacion {
 	 * @param menaje
 	 *            the menaje to set
 	 */
-	public void setMenaje(Character menaje) {
+	public void setMenaje(Boolean menaje) {
 		this.menaje = menaje;
 	}
 
