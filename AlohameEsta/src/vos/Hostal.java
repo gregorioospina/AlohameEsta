@@ -13,13 +13,13 @@ public class Hostal extends HotelHostal {
 	 * Hora de apertura de el hostal
 	 */
 	@JsonProperty(value = "horaApertura")
-	private Date horaApertura;
+	private Integer horaApertura;
 
 	/**
 	 * Hora de cierre del hotel
 	 */
 	@JsonProperty(value = "horaCierre")
-	private Date horaCierre;
+	private Integer horaCierre;
 
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
@@ -45,8 +45,8 @@ public class Hostal extends HotelHostal {
 			@JsonProperty(value = "piscina") Boolean piscina, 
 			@JsonProperty(value = "parqueadero") Boolean parqueadero, @JsonProperty(value = "wifi") Boolean wifi,
 			@JsonProperty(value = "tvCable") Boolean tvCable,
-			@JsonProperty(value = "horaApertura") Date horaApertura,
-			@JsonProperty(value = "horaCierre") Date horaCierre, @JsonProperty(value="numRegistro") Long numRegisto, @JsonProperty(value="direccion")String direccion) {
+			@JsonProperty(value = "horaApertura") Integer horaApertura,
+			@JsonProperty(value = "horaCierre") Integer horaCierre, @JsonProperty(value="numRegistro") Long numRegisto, @JsonProperty(value="direccion")String direccion) {
 		super(idOperador, cupoTotal, correo, nombre, tipo, restaurante, piscina, parqueadero, wifi, tvCable, numRegisto, direccion);
 		this.horaApertura = horaApertura;
 		this.horaCierre = horaCierre;
@@ -59,7 +59,7 @@ public class Hostal extends HotelHostal {
 	/**
 	 * @return the horaApertura
 	 */
-	public Date getHoraApertura() {
+	public Integer getHoraApertura() {
 		return horaApertura;
 	}
 
@@ -67,14 +67,14 @@ public class Hostal extends HotelHostal {
 	 * @param horaApertura
 	 *            the horaApertura to set
 	 */
-	public void setHoraApertura(Date horaApertura) {
+	public void setHoraApertura(Integer horaApertura) {
 		this.horaApertura = horaApertura;
 	}
 
 	/**
 	 * @return the horaCierre
 	 */
-	public Date getHoraCierre() {
+	public Integer getHoraCierre() {
 		return horaCierre;
 	}
 
@@ -82,7 +82,7 @@ public class Hostal extends HotelHostal {
 	 * @param horaCierre
 	 *            the horaCierre to set
 	 */
-	public void setHoraCierre(Date horaCierre) {
+	public void setHoraCierre(Integer horaCierre) {
 		this.horaCierre = horaCierre;
 	}
 

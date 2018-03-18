@@ -8,13 +8,13 @@ public class ViviendaUni extends Operador {
 	private Long id;
 
 	@JsonProperty(value = "salasDeEstudioCosto")
-	private Integer salasDeEstudioCosto;
+	private Double salasDeEstudioCosto;
 
 	@JsonProperty(value = "restauranteCosto")
-	private Integer restauranteCosto;
+	private Double restauranteCosto;
 
 	@JsonProperty(value = "gimnasioCosto")
-	private Integer gimnasioCosto;
+	private Double gimnasioCosto;
 
 	@JsonProperty(value = "ubicacion")
 	private String ubicacion;
@@ -37,9 +37,9 @@ public class ViviendaUni extends Operador {
 	public ViviendaUni(@JsonProperty(value = "idOperador") Long idOperador,
 			@JsonProperty(value = "cupoTotal") Integer cupoTotal, @JsonProperty(value = "correo") String correo,
 			@JsonProperty(value = "nombre") String nombre,@JsonProperty(value="tipo") String tipo,
-			@JsonProperty(value = "salasDeEstudioCosto") Integer salasDeEstudioCosto,
-			@JsonProperty(value = "restauranteCosto") Integer restauranteCosto,
-			@JsonProperty(value = "gimansioCosto") Integer gimnasioCosto,
+			@JsonProperty(value = "salasDeEstudioCosto") Double salasDeEstudioCosto,
+			@JsonProperty(value = "restauranteCosto") Double restauranteCosto,
+			@JsonProperty(value = "gimansioCosto") Double gimnasioCosto,
 			@JsonProperty(value = "ubicacion") String ubicacion, Short capacidad) {
 		super(idOperador, cupoTotal, correo, nombre,tipo);
 		this.salasDeEstudioCosto = salasDeEstudioCosto;
@@ -67,7 +67,7 @@ public class ViviendaUni extends Operador {
 	/**
 	 * @return the salasDeEstudioCosto
 	 */
-	public Integer getSalasDeEstudioCosto() {
+	public Double getSalasDeEstudioCosto() {
 		return salasDeEstudioCosto;
 	}
 
@@ -75,14 +75,14 @@ public class ViviendaUni extends Operador {
 	 * @param salasDeEstudioCosto
 	 *            the salasDeEstudioCosto to set
 	 */
-	public void setSalasDeEstudioCosto(Integer salasDeEstudioCosto) {
+	public void setSalasDeEstudioCosto(Double salasDeEstudioCosto) {
 		this.salasDeEstudioCosto = salasDeEstudioCosto;
 	}
 
 	/**
 	 * @return the restauranteCosto
 	 */
-	public Integer getRestauranteCosto() {
+	public Double getRestauranteCosto() {
 		return restauranteCosto;
 	}
 
@@ -90,14 +90,14 @@ public class ViviendaUni extends Operador {
 	 * @param restauranteCosto
 	 *            the restauranteCosto to set
 	 */
-	public void setRestauranteCosto(Integer restauranteCosto) {
+	public void setRestauranteCosto(Double restauranteCosto) {
 		this.restauranteCosto = restauranteCosto;
 	}
 
 	/**
 	 * @return the gimnasioCosto
 	 */
-	public Integer getGimnasioCosto() {
+	public Double getGimnasioCosto() {
 		return gimnasioCosto;
 	}
 
@@ -105,7 +105,7 @@ public class ViviendaUni extends Operador {
 	 * @param gimnasioCosto
 	 *            the gimnasioCosto to set
 	 */
-	public void setGimnasioCosto(Integer gimnasioCosto) {
+	public void setGimnasioCosto(Double gimnasioCosto) {
 		this.gimnasioCosto = gimnasioCosto;
 	}
 
