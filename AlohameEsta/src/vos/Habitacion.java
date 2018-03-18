@@ -38,6 +38,18 @@ public class Habitacion {
 	@JsonProperty(value = "menaje")
 	private Boolean menaje;
 
+	@JsonProperty(value = "idOperador")
+	private Long idOperador;
+
+	@JsonProperty(value = "idHabitacion")
+	private Long idHabitacion;
+	
+	@JsonProperty(value = "numero")
+	private Integer numero;
+	
+	@JsonProperty(value = "ocupado")
+	private Boolean ocupado;
+
 	////////////////////////////////////////////
 	//////////////// CONSTRUCTOR/////////////////
 	////////////////////////////////////////////
@@ -51,15 +63,24 @@ public class Habitacion {
 	 * @param precio
 	 * @param ubicacion
 	 * @param menaje
+	 * @param idOperador
+	 * @param idHabitacion
+	 * @param numero
 	 */
-	public Habitacion(@JsonProperty(value = "tipo") String tipo, @JsonProperty(value = "cupo") Integer cupo,
-			@JsonProperty(value = "precio") Double precio, @JsonProperty(value = "ubicacion") String ubicacion,
-			@JsonProperty(value = "menaje") Boolean menaje) {
+	public Habitacion(@JsonProperty(value = "idOperador") Long idOperador,
+			@JsonProperty(value = "idHabitacion") Long idHabitacion, @JsonProperty(value = "tipo") String tipo,
+			@JsonProperty(value = "cupo") Integer cupo, @JsonProperty(value = "precio") Double precio,
+			@JsonProperty(value = "ubicacion") String ubicacion, @JsonProperty(value = "numero") Integer numero, @JsonProperty(value = "menaje") Boolean menaje,
+			@JsonProperty(value = "ocupado") Boolean ocupado) {
 		this.tipo = tipo;
 		this.cupo = cupo;
 		this.precio = precio;
 		this.ubicacion = ubicacion;
 		this.menaje = menaje;
+		this.idOperador = idOperador;
+		this.idHabitacion = idHabitacion;
+		this.numero = numero;
+		this.ocupado = ocupado;
 	}
 
 	////////////////////////////////////////////
@@ -131,6 +152,62 @@ public class Habitacion {
 	 */
 	public Boolean getMenaje() {
 		return menaje;
+	}
+
+	/**
+	 * @return the numero
+	 */
+	public Integer getNumero() {
+		return numero;
+	}
+
+	/**
+	 * @param numero the numero to set
+	 */
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	/**
+	 * @return the idOperador
+	 */
+	public Long getIdOperador() {
+		return idOperador;
+	}
+
+	/**
+	 * @return the ocupado
+	 */
+	public Boolean getOcupado() {
+		return ocupado;
+	}
+
+	/**
+	 * @param ocupado the ocupado to set
+	 */
+	public void setOcupado(Boolean ocupado) {
+		this.ocupado = ocupado;
+	}
+
+	/**
+	 * @param idOperador the idOperador to set
+	 */
+	public void setIdOperador(Long idOperador) {
+		this.idOperador = idOperador;
+	}
+
+	/**
+	 * @return the idHabitacion
+	 */
+	public Long getIdHabitacion() {
+		return idHabitacion;
+	}
+
+	/**
+	 * @param idHabitacion the idHabitacion to set
+	 */
+	public void setIdHabitacion(Long idHabitacion) {
+		this.idHabitacion = idHabitacion;
 	}
 
 	/**

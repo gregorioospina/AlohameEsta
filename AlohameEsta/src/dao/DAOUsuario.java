@@ -114,8 +114,7 @@ public class DAOUsuario {
 	 * @throws Exception Si se genera un error dentro del metodo.
 	 */
 	public void addUsuario(Usuario usuario) throws SQLException, Exception {
-		String sq1 = String.format("INSERT INTO %1$s.USUARIOS (CODIGO, NOMBRE, CORREO) VALUES (%2$d, %3$s, %4$s)",
-				usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo());
+		String sq1 = String.format("INSERT INTO %1$s.USUARIOS (CODIGO, NOMBRE, CORREO) VALUES (%2$d, %3$s, %4$s)", USUARIO, usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo());
 		
 		System.out.println(sq1);
 		
@@ -137,7 +136,7 @@ public class DAOUsuario {
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append(String.format("UPDATE %s.USUARIOS SET ", USUARIO));
 		sq1.append(String.format("CODIGO  = '%1$d' AND NOMBRE = '%2$s' AND CORREO = '%3$s'", usuario.getCodigoUniandes(), usuario.getNombre(), usuario.getCorreo()));
-		sq1.append(String.format("WHERE CODIGO = '%1$d'", usuario.getCodigoUniandes()));
+		sq1.append(String.format("WHERE CODIGO = '%d'", usuario.getCodigoUniandes()));
 		
 		System.out.println(sq1);
 		

@@ -64,7 +64,7 @@ public class DAOReserva {
 	 */
 	public ArrayList<Reserva> getReserva() throws SQLException, Exception {
 		ArrayList<Reserva> reservas = new ArrayList<>();
-		String sq1 = String.format("SELECT * FROM %1$s.RESERVAS", USUARIO);
+		String sq1 = String.format("SELECT * FROM %s.RESERVAS", USUARIO);
 
 		PreparedStatement prepStmt = conn.prepareStatement(sq1);
 		recursos.add(prepStmt);
@@ -145,8 +145,8 @@ public class DAOReserva {
 	 */
 	public void addReserva(Reserva reserva) throws SQLException, Exception {
 		String sq1 = String.format(
-				"INSERT INTO %1$s.RESERVAS (ID_RESERVA, CODIGOUNIANDINO, ID_OPERADOR, CANCELADO, PRECIO, ID_HABITACION, FECHA_INICIAL, FECHA_FINAL) VALUES (%1$d, %2$d, %3$d, %4$s, %5$d, %6$d, %7$s, %8$s)",
-				reserva.getIdReserva(), reserva.getidUsuario(), reserva.getidOperador(), reserva.getCancelado(),
+				"INSERT INTO %1$s.RESERVAS (ID_RESERVA, CODIGOUNIANDINO, ID_OPERADOR, CANCELADO, PRECIO, ID_HABITACION, FECHA_INICIAL, FECHA_FINAL) VALUES (%2$d, %3$d, %4$d, %5$c, %6$f, %7$d, %8$tF, %9$tF)",
+				USUARIO, reserva.getIdReserva(), reserva.getidUsuario(), reserva.getidOperador(), reserva.getCancelado(),
 				reserva.getPrecio(), reserva.getidHabitacion(), reserva.getFechaInicio(), reserva.getFechaFinal());
 
 		System.out.println(sq1);
@@ -172,10 +172,10 @@ public class DAOReserva {
 	public void updateReservas(Reserva reserva) throws SQLException, Exception {
 		StringBuilder sq1 = new StringBuilder();
 		sq1.append(String.format("UPDATE %s.RESERVAS SET ", USUARIO));
-		sq1.append(String.format(
-				"ID_RESERVA = '%1$d', CODIGOUNIANDINO = '%2$d', ID_OPERADOR = '%2$d', CANCELADO = '%2$s', PRECIO = '%2$d', ID_HABITACION = '%2$d', FECHA_INICIAL = '%2$s', FECHA_FINAL = '%2$s'",
-				reserva.getIdReserva(), reserva.getidUsuario(), reserva.getidOperador(), reserva.getCancelado(),
+		sq1.append(String.format("ID_RESERVA = '%1$d', CODIGOUNIANDINO = '%2$d', ID_OPERADOR = '%2$d', CANCELADO = '%2$s', PRECIO = '%2$d', ID_HABITACION = '%2$d', FECHA_INICIAL = '%2$s', FECHA_FINAL = '%2$s'",reserva.getIdReserva(), reserva.getidUsuario(), reserva.getidOperador(), reserva.getCancelado(),
 				reserva.getPrecio(), reserva.getidHabitacion(), reserva.getFechaInicio(), reserva.getFechaFinal()));
+		sq1.append(String.format("WHERE ID_RESERVA = %d ", reserva.getIdReserva()));	
+				
 
 		System.out.println(sq1);
 
