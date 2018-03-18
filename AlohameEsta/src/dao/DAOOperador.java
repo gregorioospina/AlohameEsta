@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 import vos.Operador;
-import vos.Operador;
+import vos.Vivienda;
 
 public class DAOOperador {
 
@@ -111,11 +112,30 @@ public class DAOOperador {
 	
 	private Operador convertResultSetToOperador(ResultSet result) throws SQLException {
 		
-		long idOperador = result.getLong("ID_OPERADOR");
+		Long idOperador = result.getLong("ID_OPERADOR");
 		String correo = result.getString("CORREO");
 		String nombre = result.getString("NOMBRE");
-		int cupoTotal = result.getInt("CUPO");
+		Integer cupoTotal = result.getInt("CUPO");
 		Operador operamela = new Operador(idOperador, cupoTotal, correo, nombre);
 		return operamela;
 	}
+	
+	private Vivienda convertResultSetToVivienda(ResultSet result, ResultSet resultOperador) throws SQLException {
+		Long idOperador = result.getLong("ID_OPERADOR");
+		Integer diasAlquilada = result.getInt("DIAS_ALQUILADA");
+		Integer numeroHabitaciones = result.getInt("NUMERO_HABITACIONES");
+		String ubicacion = result.getString("UBIACION");
+		Boolean menaje = result.getBoolean("MENAJE");
+		Double precio = result.getDouble("PRECIO");
+		String seguro = result.getString("SEGURO");
+		Integer cupoTotal = resultOperador.getInt("CUPO");
+		String correo = resultOperador.getString("CORREO");
+		String nombre = resultOperador.getString("NOMBRE");
+		Vivienda viviendamela = new Vivienda(idOperador, cupoTotal, correo, nombre, numeroHabitaciones, ubicacion, menaje, precio, seguro, diasAlquilada);
+		return viviendamela;
+	}
+	
+	
+	
+	
 }
