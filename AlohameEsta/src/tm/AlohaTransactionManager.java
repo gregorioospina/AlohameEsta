@@ -1268,6 +1268,48 @@ public class AlohaTransactionManager {
 		}
 		
 		/**
+		 * Metodo que modela la transaccion que actualiza en la base de datos al operador que entra por parametro.<br/>
+		 * Solamente se actualiza si existe el operador en la Base de Datos <br/>
+		 * <b> post: </b> se ha actualizado el operador que entra como parametro <br/>
+		 * @param operador - Operador a actualizar. operador != null
+		 * @throws Exception - Cualquier error que se genere actualizando al operador.
+		 */
+		public void updateOperador(Object operador, String tipo) throws Exception 
+		{
+			DAOOperador daoOperador = new DAOOperador( );
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn( conn );
+				daoOperador.updateOperador(operador, tipo);		
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+		
+		/**
 		 * Metodo que modela la transaccion que elimina de la base de datos al operador que entra por parametro. <br/>
 		 * Solamente se actualiza si existe el operador en la Base de Datos <br/>
 		 * <b> post: </b> se ha eliminado el operador que entra por parametro <br/>
