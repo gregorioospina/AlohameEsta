@@ -161,7 +161,73 @@ public class HabitacionService {
 		}
 	}
 	
+	/**
+	 * crea una nueva habitacion e informa de los posibles casos de error.
+	 * 
+	 * @param habitacion
+	 * @return
+	 */
+	@PUT
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response addHabitacion(Habitacion habitacion) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			tm.addHabitacion(habitacion);
+			return Response.status(200).entity(habitacion).build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
 	
+	/**
+	 * Modifica la habitacion que entra por parametro e informa sobre los casos de
+	 * error.
+	 * 
+	 * @param reserva
+	 * @return
+	 */
+	@POST
+	@Path("{id: \\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response updateHabitacion(Habitacion habitacion, @PathParam("id") Long id) {
+
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			if (tm.getAllHabitacionesById(id) == null) {
+				return Response.status(404).build();
+			}
+			tm.updateHabitacion(habitacion);
+			return Response.status(200).entity(habitacion).build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	/**
+	 * Metodo que borra una habitacion y comenta sobre los casos de error.
+	 * 
+	 * @param reserva
+	 * @param codigo
+	 * @return
+	 */
+	@DELETE
+	@Path("{id: \\d+}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteHabitacion(Habitacion habitacion, @PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			if (tm.getReservaById(id) == null) {
+				return Response.status(404).build();
+			}
+			tm.deleteHabitacion(habitacion);
+			return Response.status(200).entity(habitacion).build();
+		} catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
 	
 	
 }

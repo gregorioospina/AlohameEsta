@@ -154,7 +154,7 @@ public class ReservaService {
 	}
 
 	/**
-	 * Modifica el usuario que entra por parametro e informa sobre los casos de
+	 * Modifica la reserva que entra por parametro e informa sobre los casos de
 	 * error.
 	 * 
 	 * @param reserva

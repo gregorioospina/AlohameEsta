@@ -552,4 +552,34 @@ public class DAOOperador {
 	private char boolToInt(Boolean bol) {
 		return bol?'1':'0';
 	}
+	
+	/**
+	 * Metodo encargado de inicializar la conexion del DAO a la Base de Datos a
+	 * partir del parametro <br/>
+	 * <b>Postcondicion: </b> el atributo conn es inicializado <br/>
+	 * 
+	 * @param connection
+	 *            la conexion generada en el TransactionManager para la
+	 *            comunicacion con la Base de Datos
+	 */
+	public void setConn(Connection connection) {
+		this.conn = connection;
+	}
+
+	/**
+	 * Metodo que cierra todos los recursos que se encuentran en el arreglo de
+	 * recursos<br/>
+	 * <b>Postcondicion: </b> Todos los recurso del arreglo de recursos han sido
+	 * cerrados.
+	 */
+	public void cerrarRecursos() {
+		for (Object ob : recursos) {
+			if (ob instanceof PreparedStatement)
+				try {
+					((PreparedStatement) ob).close();
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
+		}
+	}
 }
