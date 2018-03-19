@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import EstructurasAuxiliares.Pair;
 import vos.Apartamento;
 import vos.Hostal;
 import vos.Hotel;
@@ -95,8 +96,10 @@ public class DAOOperador {
 		return operadores;
 	}
 	
-	public Object findOperadorById(Long id) throws SQLException, Exception 
+	public Pair findOperadorById(Long id) throws SQLException, Exception 
 	{
+		Pair toReturn;
+		
 		Operador operador = null;
 
 		String sql = String.format("SELECT * FROM %1$s.OPERADORES WHERE ID_OPERADOR = %2$d;", USUARIO, id); 
@@ -138,9 +141,13 @@ public class DAOOperador {
 				operador=convertResultSetToHotelHostal(rs);
 			break;
 		default:
-			throw new Exception("tipo no es valido");
+			break;
 		}
-		return operador;
+		if(operador == null) {
+			return null;
+		}
+		toReturn = new Pair(operador,tipo);
+		return toReturn;
 	}
 	
 	public void addOperador(Operador operador) throws SQLException {

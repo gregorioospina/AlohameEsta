@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import EstructurasAuxiliares.Pair;
 import dao.*;
 import vos.*;
 
@@ -1098,9 +1099,9 @@ public class AlohaTransactionManager {
 		 * @return List<Operador> - Lista de operadores que contiene el resultado de la consulta.
 		 * @throws Exception -  Cualquier error que se genere durante la transaccion
 		 */
-		public Object findOperadorById(Long id) throws Exception {
+		public Pair findOperadorById(Long id) throws Exception {
 			DAOOperador daoOperador = new DAOOperador();
-			Object operador;
+			Pair operador;
 			try 
 			{
 				this.conn = darConexion();
