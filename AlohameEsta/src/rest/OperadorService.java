@@ -6,7 +6,9 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -189,7 +191,8 @@ public class OperadorService {
 	@PUT
 	@Produces({ MediaType.APPLICATION_JSON })
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Response addOperador(Object object, String tipo) {
+	@Path("{tipo: \\s+}")
+	public Response addOperador(Object object,@PathParam("tipo") String tipo) {
 		try {
 			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
 			tm.addOperador(object, tipo);
@@ -222,6 +225,60 @@ public class OperadorService {
 	}
 	
 	@POST
-	@
+	@Path("{tipo: \\s+}/{id: \\d+}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response updateOperador(Object object, @PathParam("tipo") String tipo, @PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			if(tm.findOperadorById(id)==null) {
+				return Response.status(404).build();
+			}
+			tm.updateOperador(object, tipo);
+			switch(tipo.toUpperCase()) {
+			case "HOTEL":
+				Hotel hoteles = (Hotel)object;
+				return Response.status(200).entity(hoteles).build();
+			case "HOSTAL":
+				Hostal hostales = (Hostal)object;
+				return Response.status(200).entity(hostales).build();
+			case "PERSONANATURAL":
+				PersonaNatural personasNaturales = (PersonaNatural)object;
+				return Response.status(200).entity(personasNaturales).build();
+			case "VIVIENDA":
+				Vivienda viviendas = (Vivienda)object;
+				return Response.status(200).entity(viviendas).build();
+			case "VIVIENDAUNI":
+				ViviendaUni viviendasUni = (ViviendaUni)object;
+				return Response.status(200).entity(viviendasUni).build();
+			case "APARTAMENTO":
+				Apartamento apartamentos = (Apartamento)object;
+				return Response.status(200).entity(apartamentos).build();
+			default:
+				return Response.status(404).entity(doErrorMessage(new Exception("No existe"))).build();
+			
+			}
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
+	
+	@DELETE
+	@Path("{id: \\d+}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response deleteOperador(Operador operador, @PathParam("id") Long id) {
+		try {
+			AlohaTransactionManager tm = new AlohaTransactionManager(getPath());
+			if (tm.findOperadorById(id) == null) {
+				return Response.status(404).build();
+			}
+			tm.deleteOperador(operador);
+			
+			return Response.status(200).entity(operador).build();
+		}catch (Exception e) {
+			return Response.status(500).entity(doErrorMessage(e)).build();
+		}
+	}
 	
 }
