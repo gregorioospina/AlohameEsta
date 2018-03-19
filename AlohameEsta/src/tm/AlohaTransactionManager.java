@@ -528,6 +528,49 @@ public class AlohaTransactionManager {
 		}
 		
 		/**
+		 * RFC2
+		 * @return lista con 20 ofertas mas solicitadas.
+		 * @throws Exception
+		 */
+		public ArrayList<String> RFC1() throws Exception
+		{
+			ArrayList<String> respu = new ArrayList<>();
+			DAOReserva daoReserva = new DAOReserva();
+			
+			try
+			{
+				this.conn = darConexion();
+				daoReserva.setConn(conn);
+				respu = daoReserva.RFC1();
+			}
+			
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoReserva.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return respu;
+		}
+		
+		/**
 		 * Metodo que modela la transaccion que agrega un reserva a la base de datos. <br/>
 		 * <b> post: </b> se ha agregado el reserva que entra como parametro <br/>
 		 * @param reserva - el reserva a agregar. reserva != null
@@ -673,7 +716,7 @@ public class AlohaTransactionManager {
 		 * @return List<Habitacion> - Lista de habitaciones que contiene el resultado de la consulta.
 		 * @throws Exception -  Cualquier error que se genere durante la transaccion
 		 */
-		public List<Habitacion> getAllHabitacions() throws Exception {
+		public List<Habitacion> getAllHabitaciones() throws Exception {
 			DAOHabitacion daoHabitacion = new DAOHabitacion();
 			List<Habitacion> habitacions;
 			try 
@@ -706,6 +749,46 @@ public class AlohaTransactionManager {
 				}
 			}
 			return habitacions;
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que retorna la habitacion por ID de la base de datos. <br/>
+		 * @return List<Habitacion> - Lista de habitaciones que contiene el resultado de la consulta.
+		 * @throws Exception -  Cualquier error que se genere durante la transaccion
+		 */
+		public Habitacion getAllHabitacionesById(Long id) throws Exception {
+			DAOHabitacion daoHabitacion = new DAOHabitacion();
+			Habitacion habitacion = null;
+			try 
+			{
+				this.conn = darConexion();
+				daoHabitacion.setConn(conn);				
+				habitacion = daoHabitacion.findHabitacionById(id);
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoHabitacion.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return habitacion;
 		}
 		
 		/**
