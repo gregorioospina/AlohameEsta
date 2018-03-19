@@ -3,7 +3,7 @@ package vos;
 import java.util.Date;
 import org.codehaus.jackson.annotate.*;
 
-public class Hostal extends HotelHostal {
+public class Hostal extends Hotel {
 
 	////////////////////////////////////////////
 	//////////////// ATRIBUTOS///////////////////

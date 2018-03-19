@@ -12,7 +12,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import vos.Apartamento;
 import vos.Hostal;
 import vos.Hotel;
-import vos.HotelHostal;
+import vos.Hotel;
 import vos.Operador;
 import vos.PersonaNatural;
 import vos.Vivienda;
@@ -268,7 +268,7 @@ public class DAOOperador {
 					viviendaUni.getCapacidad());
 			break;
 		case "HOTEL":
-			HotelHostal hotel = (HotelHostal)operador;
+			Hotel hotel = (Hotel)operador;
 			sql = String.format("INSERT INTO %1$s.OPERADORES(ID_OPERADOR,CORREO,CUPO,NOMBRE,TIPO) VALUES(%2$d, '%3$s', %4$d, '%5$s',%6$s');",
 					USUARIO,
 					hotel.getIdOperador(),
@@ -406,7 +406,7 @@ public class DAOOperador {
 			sql.append(String.format(" WHERE ID_OPERADOR = %d;", viviendaUni.getIdOperador()));
 			break;
 		case "HOTEL":
-			HotelHostal hotel = (HotelHostal)operador;
+			Hotel hotel = (Hotel)operador;
 			sql.append(String.format("UPDATE %s.OPERADORES SET ", USUARIO));
 			sql.append(String.format("CORREO = '%1$s' AND CUPO = %2$d AND NOMBRE = '%3$s' AND TIPO = '%4$s'", hotel.getCorreo(),hotel.getCupoTotal(),hotel.getNombre(), hotel.getTipo()));
 			sql.append(String.format(" WHERE ID_OPERADOR = %d;", hotel.getIdOperador()));
@@ -477,7 +477,7 @@ public class DAOOperador {
 		return personaNatural;
 	}
 	
-	private HotelHostal convertResultSetToHotelHostal(ResultSet result) throws SQLException{
+	private Hotel convertResultSetToHotelHostal(ResultSet result) throws SQLException{
 		Integer cupoTotal = result.getInt("CUPO");
 		String correo = result.getString("CORREO");
 		String nombre = result.getString("NOMBRE");
@@ -490,7 +490,7 @@ public class DAOOperador {
 		Boolean tvCable = result.getBoolean("TVCABLE");
 		Long numRegistro = result.getLong("NUMREGISTROSDT");
 		String direccion = result.getString("DIRECCION");
-		HotelHostal hotelHostal = new HotelHostal(idOperador, cupoTotal, correo, nombre, tipo, restaurante, piscina, parqueadero, wifi, tvCable, numRegistro, direccion);
+		Hotel hotelHostal = new Hotel(idOperador, cupoTotal, correo, nombre, tipo, restaurante, piscina, parqueadero, wifi, tvCable, numRegistro, direccion);
 		return hotelHostal;
 	}
 	

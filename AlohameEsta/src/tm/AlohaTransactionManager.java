@@ -1012,18 +1012,18 @@ public class AlohaTransactionManager {
 		//---------------------------------------------------------------------//
 		
 		/**
-		 * Metodo que modela la transaccion que retorna todos los habitacion de la base de datos. <br/>
-		 * @return List<Operador> - Lista de habitaciones que contiene el resultado de la consulta.
+		 * Metodo que modela la transaccion que retorna todos los operadores de la base de datos. <br/>
+		 * @return List<Operador> - Lista de operadores que contiene el resultado de la consulta.
 		 * @throws Exception -  Cualquier error que se genere durante la transaccion
 		 */
 		public List<Operador> getAllOperadores() throws Exception {
 			DAOOperador daoOperador = new DAOOperador();
-			List<Operador> habitacions;
+			List<Operador> operadors;
 			try 
 			{
 				this.conn = darConexion();
 				daoOperador.setConn(conn);				
-				habitacions = daoOperador.getAll();
+				operadors = daoOperador.getAll();
 			}
 			catch (SQLException sqlException) {
 				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
@@ -1048,8 +1048,272 @@ public class AlohaTransactionManager {
 					throw exception;
 				}
 			}
-			return habitacions;
+			return operadors;
 		}
+		
+		/**
+		 * Metodo que modela la transaccion que retorna todos los operador disponibles del operador
+		 * especificado en parametro de la base de datos. <br/>
+		 * @return List<Operador> - Lista de operadores que contiene el resultado de la consulta.
+		 * @throws Exception -  Cualquier error que se genere durante la transaccion
+		 */
+		public List<Object> getOperadorByTipo(String tipo) throws Exception {
+			DAOOperador daoOperador = new DAOOperador();
+			List<Object> operadors;
+			try 
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				operadors = daoOperador.getOperadoresByTypo(tipo);
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return operadors;
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que retorna todos los operador disponibles del operador
+		 * especificado en parametro de la base de datos. <br/>
+		 * @return List<Operador> - Lista de operadores que contiene el resultado de la consulta.
+		 * @throws Exception -  Cualquier error que se genere durante la transaccion
+		 */
+		public Object findOperadorById(Long id) throws Exception {
+			DAOOperador daoOperador = new DAOOperador();
+			Object operador;
+			try 
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				operador = daoOperador.findOperadorById(id);
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+			return operador;
+		}
+		
+		
+		/**
+		 * Metodo que modela la transaccion que agrega un operador a la base de datos. <br/>
+		 * <b> post: </b> se ha agregado el operador que entra como parametro <br/>
+		 * @param operador - el operador a agregar. operador != null
+		 * @throws Exception - Cualquier error que se genere agregando el operador
+		 */
+		public void addOperador(Operador operador) throws Exception 
+		{
+			
+			DAOOperador daoOperador = new DAOOperador( );
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				daoOperador.addOperador(operador);
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que agrega un operador a la base de datos. <br/>
+		 * <b> post: </b> se ha agregado el operador que entra como parametro <br/>
+		 * @param operador - el operador a agregar. operador != null
+		 * @throws Exception - Cualquier error que se genere agregando el operador
+		 */
+		public void addOperador(Object operador, String tipo) throws Exception 
+		{
+			
+			DAOOperador daoOperador = new DAOOperador( );
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn(conn);
+				daoOperador.addOperador(operador, tipo);
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que actualiza en la base de datos al operador que entra por parametro.<br/>
+		 * Solamente se actualiza si existe el operador en la Base de Datos <br/>
+		 * <b> post: </b> se ha actualizado el operador que entra como parametro <br/>
+		 * @param operador - Operador a actualizar. operador != null
+		 * @throws Exception - Cualquier error que se genere actualizando al operador.
+		 */
+		public void updateOperador(Operador operador) throws Exception 
+		{
+			DAOOperador daoOperador = new DAOOperador( );
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn( conn );
+				if(daoOperador.findOperadorById(operador.getIdOperador()) == null)
+				{
+					throw new Exception("El operador al que esta intentando modificar no existe");
+				}
+				daoOperador.updateOperador(operador);		
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+		
+		/**
+		 * Metodo que modela la transaccion que elimina de la base de datos al operador que entra por parametro. <br/>
+		 * Solamente se actualiza si existe el operador en la Base de Datos <br/>
+		 * <b> post: </b> se ha eliminado el operador que entra por parametro <br/>
+		 * @param Operador - operador a eliminar. operador != null
+		 * @throws Exception - Cualquier error que se genere eliminando al operador.
+		 */
+		public void deleteOperador(Operador operador) throws Exception 
+		{
+			DAOOperador daoOperador = new DAOOperador( );
+			try
+			{
+				this.conn = darConexion();
+				daoOperador.setConn( conn );
+				if(daoOperador.findOperadorById(operador.getIdOperador()) == null)
+				{
+					throw new Exception("El operador que esta intentando eliminar no existe");
+				}
+				daoOperador.deleteOperador(operador);
+
+			}
+			catch (SQLException sqlException) {
+				System.err.println("[EXCEPTION] SQLException:" + sqlException.getMessage());
+				sqlException.printStackTrace();
+				throw sqlException;
+			} 
+			catch (Exception exception) {
+				System.err.println("[EXCEPTION] General Exception:" + exception.getMessage());
+				exception.printStackTrace();
+				throw exception;
+			} 
+			finally {
+				try {
+					daoOperador.cerrarRecursos();
+					if(this.conn!=null){
+						this.conn.close();					
+					}
+				}
+				catch (SQLException exception) {
+					System.err.println("[EXCEPTION] SQLException While Closing Resources:" + exception.getMessage());
+					exception.printStackTrace();
+					throw exception;
+				}
+			}	
+		}
+		
+		
+		
 		
 
 }
